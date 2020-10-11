@@ -1,9 +1,9 @@
 #include "Player.hpp"
 
 //JOSH should refactor to not accept raw ptrs.. generate a unique ptr early 
-Player::Player(const Personality& aPersonalityPtr)
+Player::Player(const Personality& aPersonality)
 {
-	_personality = aPersonalityPtr.clone();
+	_personality = aPersonality.clone();
 }
 
 void Player::update(const RoundResults& results)

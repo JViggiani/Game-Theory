@@ -3,6 +3,10 @@
 /*
     Cheater
 */
+std::unique_ptr<Personality> PersonalityCheater::clone() const
+{
+    return std::make_unique<PersonalityCheater>(*this);
+}
 
 Decision PersonalityCheater::makeDecision() const
 {
@@ -13,7 +17,4 @@ Decision PersonalityCheater::makeDecision() const
     Cooperator
 */
 
-std::unique_ptr<Personality> PersonalityCheater::clone() const
-{
-    return std::unique_ptr<Personality>();
-}
+

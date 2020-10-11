@@ -7,6 +7,7 @@
 
 namespace Core
 {
+	/*
 	Game::Game(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2, int aNumberOfRounds)
 	{
 		_player1 = player1;
@@ -14,6 +15,7 @@ namespace Core
 
 		_numOfRounds = aNumberOfRounds;
 	}
+	*/
 
 	Game::~Game()
 	{

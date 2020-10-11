@@ -16,7 +16,11 @@ namespace Core
 		///
 		/// Main constructor.
 		///
-		Game(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2, int aNumberOfRounds);
+		explicit Game(const std::shared_ptr<Player>& player1, const std::shared_ptr<Player>& player2, const int& aNumberOfRounds)
+			: _player1(player1),
+			_player2(player2),
+			_numOfRounds(aNumberOfRounds)
+		{ };
 
 		///
 		/// Default destructor.

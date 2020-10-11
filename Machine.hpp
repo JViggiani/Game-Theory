@@ -1,6 +1,7 @@
 #pragma once
 
 #include <mutex>
+#include <iostream>
 
 #include "Player.hpp"
 #include "RoundResults.hpp"

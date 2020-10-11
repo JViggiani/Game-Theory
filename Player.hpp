@@ -11,7 +11,7 @@ class Player
 public:
 	Player(const Personality& aPersonalityPtr);
 	~Player() = default;
-	Player(const Player& aPlayer) = delete;
+	//Player(const Player& aPlayer);
 
 	void update(const RoundResults& results);
 

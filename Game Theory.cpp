@@ -38,14 +38,18 @@ int main(int argc, char* argv[])
     {
         BOOST_LOG_TRIVIAL(info) << "Beginning main";
 
-        //Player aPlayer1(new PersonalityCheater());
-        //Player aPlayer2(new PersonalityCheater());
+        PersonalityCheater aCheater1;
+        PersonalityCheater aCheater2;
+        
+        //Player aPlayer1(aCheater1);
+        //Player aPlayer2(aCheater2);
 
-        //auto aPlayer1Ptr = std::make_shared<Player>(aPlayer1);
-        //auto aPlayer2Ptr = std::make_shared<Player>(aPlayer2);
-
-        //Core::Game aGame(aPlayer1Ptr, aPlayer2Ptr, 10);
-        //aGame.run();
+        //JOSH consider again the use of a shared ptr. Do we need it? Can we just use a reference?
+        std::shared_ptr<Player> aPlayer1Ptr = std::make_shared<Player>(aCheater1);
+        std::shared_ptr<Player> aPlayer2Ptr = std::make_shared<Player>(aCheater2);
+        
+        Core::Game aGame(aPlayer1Ptr, aPlayer2Ptr, 10);
+        aGame.run();
 
     }
     catch(std::exception e)

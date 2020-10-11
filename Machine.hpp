@@ -4,7 +4,10 @@
 
 #include "Player.hpp"
 #include "RoundResults.hpp"
+#include "Decision.hpp"
+#include "RewardConfig.hpp"
 
+//JOSH should this be a singleton? consider..
 class Machine
 {
 
@@ -16,7 +19,7 @@ private:
     static std::mutex mutex_;
 
 protected:
-    Machine() = default;
+    Machine();
 
     ~Machine() = default;
 
@@ -37,10 +40,17 @@ public:
 
     // Returns the results of player decisions
     //JOSH consider replacing input players with just decisions? hmm..
-    RoundResults processEvent(std::shared_ptr<Player> aPlayer1, std::shared_ptr<Player> aPlayer2)
+    RoundResults processRound(std::shared_ptr<Player> aPlayer1, std::shared_ptr<Player> aPlayer2)
     {
-        RoundResults aRoundResults;
+        Decision aPlayer1Decision = aPlayer1->makeDecision();
+        Decision aPlayer2Decision = aPlayer2->makeDecision();
+        
+        RoundResults aRoundResults(aPlayer1Decision, aPlayer2Decision, _rewardConfig);
         return aRoundResults;
     }
+
+private:
+    //This config should never change during execution of the program. It should only be read once at startup
+    RewardConfig _rewardConfig;
 };
 

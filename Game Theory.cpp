@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <memory>
 
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
@@ -37,6 +38,14 @@ int main(int argc, char* argv[])
     {
         BOOST_LOG_TRIVIAL(info) << "Beginning main";
 
+        //Player aPlayer1(new PersonalityCheater());
+        //Player aPlayer2(new PersonalityCheater());
+
+        //auto aPlayer1Ptr = std::make_shared<Player>(aPlayer1);
+        //auto aPlayer2Ptr = std::make_shared<Player>(aPlayer2);
+
+        //Core::Game aGame(aPlayer1Ptr, aPlayer2Ptr, 10);
+        //aGame.run();
 
     }
     catch(std::exception e)

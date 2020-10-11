@@ -1,18 +1,25 @@
 #pragma once
 
+#include <memory>
+
 #include "Personality.hpp"
 #include "RoundResults.hpp"
+#include "Decision.hpp"
 
 class Player
 {
 public:
-	Player() = default;
-
+	Player(const Personality& aPersonalityPtr);
 	~Player() = default;
+	Player(const Player& aPlayer) = delete;
 
-	void update(RoundResults results);
+	void update(const RoundResults& results);
+
+	Decision makeDecision();
 
 private:
-	Personality _personality;
+	std::unique_ptr<Personality> _personality;
+	//Decision _lastOpponentMove;
+		//JOSH perhaps a list of last moves?
 };
 

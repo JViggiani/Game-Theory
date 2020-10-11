@@ -16,12 +16,12 @@ namespace Core
 		///
 		/// Main constructor.
 		///
-		Game(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2);
+		Game(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2, int aNumberOfRounds);
 
 		///
 		/// Default destructor.
 		///
-		~Game() = default;
+		~Game();
 
 		///
 		/// Run the game loop.
@@ -29,10 +29,6 @@ namespace Core
 		void run();
 
 	private:
-		///
-		/// Recieve and process game events.
-		///
-		void event();
 
 		///
 		/// Process game data.

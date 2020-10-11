@@ -3,36 +3,36 @@
 #include "Machine.hpp"
 #include "RoundResults.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace Core
 {
-	Game::Game(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2)
+	Game::Game(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2, int aNumberOfRounds)
 	{
 		_player1 = player1;
 		_player2 = player2;
+
+		_numOfRounds = aNumberOfRounds;
 	}
 
-	void Game::run()
-	{		
-		for(int aRoundCount = 0; aRoundCount < _numOfRounds; ++aRoundCount)
-		{
-			//call game event at the begin
-			// ..
-			//call game update() at the end
-		}
-
+	Game::~Game()
+	{
 		_player1.reset();
 		_player2.reset();
 	}
 
-	void Game::event()
+	void Game::run()
 	{
-		// JOSH todo
-		// Process game events
-		while(false) // while event
+		for(int aRoundCount = 0; aRoundCount < _numOfRounds; ++aRoundCount)
 		{
-			// Process system events.
-			Machine* machine = Machine::GetInstance();
-			machine->processEvent(_player1, _player2);
+			BOOST_LOG_TRIVIAL(info) << "Iterating game";
+
+			Machine* aMachine = Machine::GetInstance();
+
+			//Round results should give the players the information required to make the next decision
+			RoundResults aRoundResults = aMachine->processRound(_player1, _player2);
+			
+			this->update(aRoundResults);
 		}
 	}
 

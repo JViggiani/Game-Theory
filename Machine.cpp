@@ -18,10 +18,10 @@ Machine* Machine::GetInstance()
     return pinstance_;
 }
 
-RoundResults Machine::processRound(std::shared_ptr<Player> aPlayer1, std::shared_ptr<Player> aPlayer2)
-{
-    Decision aPlayer1Decision = aPlayer1->makeDecision();
-    Decision aPlayer2Decision = aPlayer2->makeDecision();
+RoundResults Machine::processRound(const std::shared_ptr<Player>& aPlayer1, const std::shared_ptr<Player>& aPlayer2, const GameResults& aGameResults)
+{    
+    Decision aPlayer1Decision = aPlayer1->makeDecision(aGameResults, PlayerNumber::One);
+    Decision aPlayer2Decision = aPlayer2->makeDecision(aGameResults, PlayerNumber::Two);
 
     RoundResults aRoundResults(aPlayer1Decision, aPlayer2Decision, _rewardConfig);
     return aRoundResults;

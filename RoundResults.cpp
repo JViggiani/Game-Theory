@@ -33,23 +33,3 @@ RoundResults::RoundResults(const Decision& aDecisionPlayer1, const Decision& aDe
 		throw std::exception(message.c_str());
 	}
 }
-
-Decision RoundResults::getPlayer1Decision() const
-{
-	return _player1Decision;
-}
-
-Decision RoundResults::getPlayer2Decision() const
-{
-	return _player2Decision;
-}
-
-int RoundResults::getPlayer1Reward() const
-{
-	return _player1Reward;
-}
-
-int RoundResults::getPlayer2Reward() const
-{
-	return _player2Reward;
-}

@@ -30,25 +30,14 @@ namespace Core
 		///
 		/// Run the game loop.
 		///
-		void run();
+		GameResults run();
 
-	private:
-
-		///
-		/// Process game data.
-		///
-		/// \param results The results from the previous round.
-		///
-		void update(const RoundResults& results);
-
-	
 	private:
 
 		std::shared_ptr<Player> _player1;
 		std::shared_ptr<Player> _player2;
 
 		int _numOfRounds;
-
 	};
 }
 

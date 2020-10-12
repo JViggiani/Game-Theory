@@ -5,13 +5,7 @@
 #include "Personality.hpp"
 #include "RoundResults.hpp"
 #include "Decision.hpp"
-
-enum class PlayerNumber
-{
-	Unset = 0,
-	One = 1,
-	Two = 2
-};
+#include "PlayerNumber.hpp"
 
 class Player
 {
@@ -20,16 +14,9 @@ public:
 	~Player() = default;
 	//Player(const Player& aPlayer);
 
-	void update(const RoundResults& results, const PlayerNumber& aPlayerNumber);
-
-	Decision makeDecision();
-
-	int getReward() const;
+	Decision makeDecision(const GameResults& aDecisionData, const PlayerNumber& aPlayerNumber);
 
 private:
 	std::unique_ptr<Personality> _personality;
-	int _reward;
-	//Decision _lastOpponentMove;
-		//JOSH perhaps a list of last moves?
 };
 

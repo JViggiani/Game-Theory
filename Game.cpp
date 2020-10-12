@@ -19,30 +19,29 @@ namespace Core
 
 	Game::~Game()
 	{
-		_player1.reset();
-		_player2.reset();
+		//JOSH do we want to reset here? Not if we want to reuse the players right?
+		//_player1.reset();
+		//_player2.reset();
 	}
 
-	void Game::run()
+	GameResults Game::run()
 	{
 		BOOST_LOG_TRIVIAL(info) << "Game begin.";
 		
+		GameResults aGameResults;
+
 		for(int aRoundCount = 0; aRoundCount < _numOfRounds; ++aRoundCount)
 		{
 			Machine* aMachine = Machine::GetInstance();
 
 			//Round results should give the players the information required to make the next decision
-			RoundResults aRoundResults = aMachine->processRound(_player1, _player2);
+			RoundResults aRoundResults = aMachine->processRound(_player1, _player2, aGameResults);
 			
-			this->update(aRoundResults);
+			aGameResults.update(aRoundResults);
 		}
 
-		BOOST_LOG_TRIVIAL(info) << "Game finished. Player 1 reward: " << _player1->getReward() << ". Player 2 reward: " << _player2->getReward();
-	}
+		BOOST_LOG_TRIVIAL(info) << "Game finished. Player 1 reward: " << aGameResults._player1Reward << ". Player 2 reward: " << aGameResults._player2Reward;
 
-	void Game::update(const RoundResults& results)
-	{
-		_player1->update(results, PlayerNumber::One);
-		_player2->update(results, PlayerNumber::Two);
+		return aGameResults;
 	}
 }

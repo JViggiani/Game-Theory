@@ -41,14 +41,7 @@ public:
 
     // Returns the results of player decisions
     //JOSH consider replacing input players with just decisions? hmm..
-    RoundResults processRound(std::shared_ptr<Player> aPlayer1, std::shared_ptr<Player> aPlayer2)
-    {
-        Decision aPlayer1Decision = aPlayer1->makeDecision();
-        Decision aPlayer2Decision = aPlayer2->makeDecision();
-        
-        RoundResults aRoundResults(aPlayer1Decision, aPlayer2Decision, _rewardConfig);
-        return aRoundResults;
-    }
+    RoundResults processRound(std::shared_ptr<Player> aPlayer1, std::shared_ptr<Player> aPlayer2);
 
 private:
     //This config should never change during execution of the program. It should only be read once at startup

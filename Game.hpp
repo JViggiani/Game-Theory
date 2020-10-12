@@ -39,7 +39,7 @@ namespace Core
 		///
 		/// \param results The results from the previous round.
 		///
-		void update(RoundResults results);
+		void update(const RoundResults& results);
 
 	
 	private:

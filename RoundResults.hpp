@@ -6,8 +6,17 @@
 class RoundResults
 {
 public:
-	RoundResults(Decision aDecision1, Decision aDecision2, RewardConfig aRewardConfig);
+	RoundResults(const Decision& aDecision1, const Decision& aDecision2, const RewardConfig& aRewardConfig);
 
-	//JOSH create a representative of round results - points returned etc
+	Decision getPlayer1Decision() const;
+	Decision getPlayer2Decision() const;
+	int getPlayer1Reward() const;
+	int getPlayer2Reward() const;
+private:
+	Decision _player1Decision;
+	Decision _player2Decision;
+
+	int _player1Reward;
+	int _player2Reward;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 
-enum Decision
+enum class Decision
 {
     Unset = 0,
     Cooperate = 1,

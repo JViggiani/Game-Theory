@@ -1,6 +1,55 @@
 #include "RoundResults.hpp"
 
-RoundResults::RoundResults(Decision aDecision1, Decision aDecision2, RewardConfig aRewardConfig)
+#include <string>
+#include <exception>
+
+RoundResults::RoundResults(const Decision& aDecisionPlayer1, const Decision& aDecisionPlayer2, const RewardConfig& aRewardConfig)
+	: _player1Decision(aDecisionPlayer1),
+	_player2Decision(aDecisionPlayer2)
 {
-	//JOSH determine rewards based upon decisions here
+	if(aDecisionPlayer1 == Decision::Cooperate && aDecisionPlayer2 == Decision::Cooperate)
+	{
+		_player1Reward = aRewardConfig._bothCooperate;
+		_player2Reward = aRewardConfig._bothCooperate;
+	}
+	else if(aDecisionPlayer1 == Decision::Cheat && aDecisionPlayer2 == Decision::Cheat)
+	{
+		_player1Reward = aRewardConfig._bothCheat;
+		_player2Reward = aRewardConfig._bothCheat;
+	}
+	else if(aDecisionPlayer1 == Decision::Cooperate && aDecisionPlayer2 == Decision::Cheat)
+	{
+		_player1Reward = aRewardConfig._cooperate;
+		_player2Reward = aRewardConfig._cheat;
+	}
+	else if(aDecisionPlayer1 == Decision::Cheat && aDecisionPlayer2 == Decision::Cooperate)
+	{
+		_player1Reward = aRewardConfig._cheat;
+		_player2Reward = aRewardConfig._cooperate;
+	}
+	else
+	{
+		std::string message = "Error: Player " + (aDecisionPlayer1 == Decision::Unset ? std::string("1") : std::string("2")) + " did not have a decision set. Cannot calculate reward, game is forfiet.";
+		throw std::exception(message.c_str());
+	}
+}
+
+Decision RoundResults::getPlayer1Decision() const
+{
+	return _player1Decision;
+}
+
+Decision RoundResults::getPlayer2Decision() const
+{
+	return _player2Decision;
+}
+
+int RoundResults::getPlayer1Reward() const
+{
+	return _player1Reward;
+}
+
+int RoundResults::getPlayer2Reward() const
+{
+	return _player2Reward;
 }

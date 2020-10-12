@@ -17,4 +17,12 @@ Decision PersonalityCheater::makeDecision() const
     Cooperator
 */
 
+std::unique_ptr<Personality> PersonalityCooperator::clone() const
+{
+    return std::make_unique<PersonalityCooperator>(*this);
+}
 
+Decision PersonalityCooperator::makeDecision() const
+{
+    return Decision::Cooperate;
+}

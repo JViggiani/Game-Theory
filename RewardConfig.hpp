@@ -1,6 +1,12 @@
 #pragma once
-class RewardConfig
+struct RewardConfig
 {
-	//JOSH implement me
+	RewardConfig();
+	~RewardConfig() = default;
+
+	int _bothCooperate;
+	int _bothCheat;
+	int _cooperate;
+	int _cheat;
 };
 

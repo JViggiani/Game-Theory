@@ -5,7 +5,7 @@ std::mutex Machine::mutex_;
 
 Machine::Machine()
 {
-    //JOSH read reward config from file here
+    //JOSH read reward config from file ONCE here
 }
 
 Machine* Machine::GetInstance()
@@ -16,4 +16,13 @@ Machine* Machine::GetInstance()
         pinstance_ = new Machine();
     }
     return pinstance_;
+}
+
+RoundResults Machine::processRound(std::shared_ptr<Player> aPlayer1, std::shared_ptr<Player> aPlayer2)
+{
+    Decision aPlayer1Decision = aPlayer1->makeDecision();
+    Decision aPlayer2Decision = aPlayer2->makeDecision();
+
+    RoundResults aRoundResults(aPlayer1Decision, aPlayer2Decision, _rewardConfig);
+    return aRoundResults;
 }

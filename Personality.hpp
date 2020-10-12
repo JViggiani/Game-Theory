@@ -20,3 +20,11 @@ public:
 
 	Decision makeDecision() const override;
 };
+
+class PersonalityCooperator : public Personality
+{
+public:
+	virtual std::unique_ptr<Personality> clone() const override;
+
+	Decision makeDecision() const override;
+};

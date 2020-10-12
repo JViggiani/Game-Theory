@@ -25,10 +25,10 @@ namespace Core
 
 	void Game::run()
 	{
+		BOOST_LOG_TRIVIAL(info) << "Game begin.";
+		
 		for(int aRoundCount = 0; aRoundCount < _numOfRounds; ++aRoundCount)
 		{
-			BOOST_LOG_TRIVIAL(info) << "Iterating game";
-
 			Machine* aMachine = Machine::GetInstance();
 
 			//Round results should give the players the information required to make the next decision
@@ -36,11 +36,13 @@ namespace Core
 			
 			this->update(aRoundResults);
 		}
+
+		BOOST_LOG_TRIVIAL(info) << "Game finished. Player 1 reward: " << _player1->getReward() << ". Player 2 reward: " << _player2->getReward();
 	}
 
-	void Game::update(RoundResults results)
+	void Game::update(const RoundResults& results)
 	{
-		_player1->update(results);
-		_player2->update(results);
+		_player1->update(results, PlayerNumber::One);
+		_player2->update(results, PlayerNumber::Two);
 	}
 }

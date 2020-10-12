@@ -51,8 +51,7 @@ int main(int argc, char* argv[])
         std::shared_ptr<Player> aPlayer2Ptr = std::make_shared<Player>(aCopycat);
         
         Core::Game aGame(aPlayer1Ptr, aPlayer2Ptr, 10);
-        aGame.run();
-
+        GameResults aGameResults = aGame.run();
     }
     catch(std::exception e)
     {

@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DecisionData.cpp" />
-    <ClCompile Include="Game Theory.cpp" />
+    <ClCompile Include="GameTheory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameResults.cpp" />
     <ClCompile Include="Machine.cpp" />

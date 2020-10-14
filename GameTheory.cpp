@@ -18,7 +18,7 @@ void init_logging()
 
     boost::log::add_file_log
     (
-        boost::log::keywords::file_name = "sample.log",
+        boost::log::keywords::file_name = "./Log/Sample.log",
         boost::log::keywords::format = "[%TimeStamp%] [%ThreadID%] [%Severity%] %Message%"
     );
 
@@ -38,18 +38,19 @@ int main(int argc, char* argv[])
     {
         BOOST_LOG_TRIVIAL(info) << "Beginning main";
 
-        //PersonalityCheater aCheater;
+        PersonalityCheater aCheater;
         PersonalityCooperator aCooperator;
         PersonalityCopycat aCopycat;
         
-        Player aPlayer1(aCooperator);
-        Player aPlayer2(aCopycat);
+        Player aPlayer1(aCheater);
+        Player aPlayer2(aCooperator);
+        Player aPlayer3(aCopycat);
         
-        //std::shared_ptr<Player> aPlayer3Ptr = std::make_shared<Player>(aCheater);
         std::shared_ptr<Player> aPlayer1Ptr = std::make_shared<Player>(aPlayer1);
         std::shared_ptr<Player> aPlayer2Ptr = std::make_shared<Player>(aPlayer2);
+        std::shared_ptr<Player> aPlayer3Ptr = std::make_shared<Player>(aPlayer3);
         
-        Core::Game aGame(aPlayer1Ptr, aPlayer2Ptr, 10);
+        Core::Game aGame(aPlayer2Ptr, aPlayer3Ptr, 10);
         GameResults aGameResults = aGame.run();
     }
     catch(std::exception e)

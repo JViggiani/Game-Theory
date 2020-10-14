@@ -1,11 +1,26 @@
 #include "Machine.hpp"
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/ini_parser.hpp>
+
+#include <boost/log/trivial.hpp>
+
 Machine* Machine::pinstance_{nullptr};
 std::mutex Machine::mutex_;
 
 Machine::Machine()
 {
-    //JOSH read reward config from file ONCE here
+    //In the constructor we read the reward.ini file to determine game reward
+
+    BOOST_LOG_TRIVIAL(info) << "Building game machine and reading reward config file.";
+
+    boost::property_tree::ptree pt;
+    boost::property_tree::ini_parser::read_ini("./Config/RewardConfig.ini", pt);
+
+    _rewardConfig._bothCheat = pt.get<int>("Reward.BothCheat");
+    _rewardConfig._bothCooperate = pt.get<int>("Reward.BothCooperate");
+    _rewardConfig._cheat = pt.get<int>("Reward.Cheat");
+    _rewardConfig._cooperate = pt.get<int>("Reward.Cooperate");
 }
 
 Machine* Machine::GetInstance()

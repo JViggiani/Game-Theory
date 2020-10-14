@@ -145,7 +145,6 @@
     <ClCompile Include="Machine.cpp" />
     <ClCompile Include="Personality.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RewardConfig.cpp" />
     <ClCompile Include="RoundResults.cpp" />
   </ItemGroup>
   <ItemGroup>

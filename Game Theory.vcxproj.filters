@@ -33,9 +33,6 @@
     <ClCompile Include="Machine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RewardConfig.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameTheory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

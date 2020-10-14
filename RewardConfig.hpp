@@ -1,7 +1,7 @@
 #pragma once
 struct RewardConfig
 {
-	RewardConfig();
+	RewardConfig() = default;
 	~RewardConfig() = default;
 
 	int _bothCooperate;

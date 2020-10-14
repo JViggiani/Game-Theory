@@ -42,13 +42,12 @@ int main(int argc, char* argv[])
         PersonalityCooperator aCooperator;
         PersonalityCopycat aCopycat;
         
-        //Player aPlayer1(aCheater1);
-        //Player aPlayer2(aCheater2);
-
-        //JOSH consider again the use of a shared ptr. Do we need it? Can we just use a reference?
-        //std::shared_ptr<Player> aPlayer1Ptr = std::make_shared<Player>(aCheater);
-        std::shared_ptr<Player> aPlayer1Ptr = std::make_shared<Player>(aCooperator);
-        std::shared_ptr<Player> aPlayer2Ptr = std::make_shared<Player>(aCopycat);
+        Player aPlayer1(aCooperator);
+        Player aPlayer2(aCopycat);
+        
+        //std::shared_ptr<Player> aPlayer3Ptr = std::make_shared<Player>(aCheater);
+        std::shared_ptr<Player> aPlayer1Ptr = std::make_shared<Player>(aPlayer1);
+        std::shared_ptr<Player> aPlayer2Ptr = std::make_shared<Player>(aPlayer2);
         
         Core::Game aGame(aPlayer1Ptr, aPlayer2Ptr, 10);
         GameResults aGameResults = aGame.run();

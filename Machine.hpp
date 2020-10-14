@@ -8,43 +8,49 @@
 #include "Decision.hpp"
 #include "RewardConfig.hpp"
 
-//JOSH should this be a singleton? consider..
+
+//! The Machine is a thread safe Singleton which returns the results of player decisions
 class Machine
 {
-
-    /**
-     * The Machine is a thread safe Singleton which returns the results of player decisions
-     */
-private:
-    static Machine* pinstance_;
-    static std::mutex mutex_;
-
-protected:
-    Machine();
-
-    ~Machine() = default;
-
 public:
-    /**
-     * Singletons should not be cloneable.
-     */
+    /// Constructors and Destructors ///
+
+    //! Singletons should not be cloneable.
     Machine(Machine& other) = delete;
-    /**
-     * Singletons should not be assignable.
-     */
+
+    //! Deleted move constructor
+    Machine(Machine&&) = delete;
+
+    /// Operators ///
+
+    //! Singletons should not be assignable.
     void operator=(const Machine&) = delete;
-    /**
-     * This is the static method that controls the access to the singleton
-     * instance. It gaurantees that only one instance is ever made.
-     */
+
+    //! Singletons should not be moveable.
+    Machine& operator=(Machine&&) = delete;
+
+    /// Functions ///
+
+    //! This is the static method that controls the access to the singleton instance. It gaurantees that only one instance is ever made.
     static Machine* GetInstance();
 
-    // Returns the results of player decisions
-    //JOSH consider replacing input players with just decisions? hmm..
+    // Returns the results of player decisions based upon input game results so far
     RoundResults processRound(const std::shared_ptr<Player>& aPlayer1, const std::shared_ptr<Player>& aPlayer2, const GameResults& aGameResults);
+
+protected:
+    /// Constructors and Destructors ///
+
+    //! Can only be constructed from GetInstance()
+    Machine();
+
+    //! Cannot be destroyed from outside of class
+    ~Machine() = default;
 
 private:
     //This config should never change during execution of the program. It should only be read once at startup
     RewardConfig _rewardConfig;
+
+    static Machine* pinstance_;
+    static std::mutex mutex_;
 };
 

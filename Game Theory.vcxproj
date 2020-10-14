@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DecisionData.cpp" />
     <ClCompile Include="GameTheory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameResults.cpp" />
@@ -154,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Decision.hpp" />
-    <ClInclude Include="DecisionData.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameResults.hpp" />
     <ClInclude Include="Machine.hpp" />

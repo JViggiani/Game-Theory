@@ -17,12 +17,14 @@ namespace Core
 	}
 	*/
 
+	/*
 	Game::~Game()
 	{
 		//JOSH do we want to reset here? Not if we want to reuse the players right?
 		//_player1.reset();
 		//_player2.reset();
 	}
+	*/
 
 	GameResults Game::run()
 	{
@@ -40,7 +42,7 @@ namespace Core
 			aGameResults.update(aRoundResults);
 		}
 
-		BOOST_LOG_TRIVIAL(info) << "Game finished. Player 1 reward: " << aGameResults._player1Reward << ". Player 2 reward: " << aGameResults._player2Reward;
+		BOOST_LOG_TRIVIAL(info) << "Game finished. Player 1 reward: " << aGameResults.getPlayer1Reward() << ". Player 2 reward: " << aGameResults.getPlayer2Reward();
 
 		return aGameResults;
 	}

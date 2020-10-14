@@ -27,6 +27,10 @@ Decision PersonalityCooperator::makeDecision(const GameResults& aDecisionData, c
     return Decision::Cooperate;
 }
 
+/*
+    Copycat
+*/
+
 std::unique_ptr<Personality> PersonalityCopycat::clone() const
 {
     return std::make_unique<PersonalityCopycat>(*this);
@@ -34,17 +38,17 @@ std::unique_ptr<Personality> PersonalityCopycat::clone() const
 
 Decision PersonalityCopycat::makeDecision(const GameResults& aDecisionData, const PlayerNumber& aPlayerNumber) const
 {
-    if(aDecisionData._player1Decisions.empty())
+    if(aDecisionData.getPlayer1Decisions().empty())
     {
         return Decision::Cooperate;
     }
 
     if(aPlayerNumber == PlayerNumber::One)
     {
-        return aDecisionData._player2Decisions.back();
+        return aDecisionData.getPlayer2Decisions().back();
     }
     else
     {
-        return aDecisionData._player1Decisions.back();
+        return aDecisionData.getPlayer1Decisions().back();
     }
 }

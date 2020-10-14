@@ -36,9 +36,6 @@
     <ClCompile Include="RewardConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DecisionData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameTheory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,9 +66,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RewardConfig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DecisionData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerNumber.hpp">

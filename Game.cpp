@@ -7,25 +7,6 @@
 
 namespace Core
 {
-	/*
-	Game::Game(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2, int aNumberOfRounds)
-	{
-		_player1 = player1;
-		_player2 = player2;
-
-		_numOfRounds = aNumberOfRounds;
-	}
-	*/
-
-	/*
-	Game::~Game()
-	{
-		//JOSH do we want to reset here? Not if we want to reuse the players right?
-		//_player1.reset();
-		//_player2.reset();
-	}
-	*/
-
 	GameResults Game::run()
 	{
 		BOOST_LOG_TRIVIAL(info) << "Game begin.";

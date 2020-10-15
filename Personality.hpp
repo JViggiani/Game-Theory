@@ -6,58 +6,63 @@
 #include "GameResults.hpp"
 #include "PlayerNumber.hpp"
 
-//! Abstract base Personality
-class Personality
+namespace Implementation
 {
-public:
-	/// Constructors and Destructors ///
 
-	//! Main constructor.
-	Personality() = default;
+	//! Abstract base Personality
+	class Personality
+	{
+	public:
+		/// Constructors and Destructors ///
 
-	//! Default destructor.
-	virtual ~Personality() = default;
+		//! Main constructor.
+		Personality() = default;
 
-	//! Default copy constructor
-	Personality(const Personality&) = default;
+		//! Default destructor.
+		virtual ~Personality() = default;
 
-	//! Default move constructor
-	Personality(Personality&&) = default;
+		//! Default copy constructor
+		Personality(const Personality&) = default;
 
-	/// Operators ///
+		//! Default move constructor
+		Personality(Personality&&) = default;
 
-	//! Default copy assignment
-	Personality& operator=(const Personality&) = default;
+		/// Operators ///
 
-	//! Default move assignment
-	Personality& operator=(Personality&&);
+		//! Default copy assignment
+		Personality& operator=(const Personality&) = default;
 
-	/// Functions ///
+		//! Default move assignment
+		Personality& operator=(Personality&&);
 
-	virtual std::unique_ptr<Personality> clone() const = 0;
-	virtual Decision makeDecision(const GameResults& aDecisionData, const PlayerNumber& aPlayerNumber) const = 0;
-};
+		/// Functions ///
 
-class PersonalityCheater : public Personality
-{
-public:
-	virtual std::unique_ptr<Personality> clone() const override;
+		virtual std::unique_ptr<Personality> clone() const = 0;
+		virtual Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const = 0;
+	};
 
-	Decision makeDecision(const GameResults& aDecisionData, const PlayerNumber& aPlayerNumber) const override;
-};
+	class PersonalityCheater : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
 
-class PersonalityCooperator : public Personality
-{
-public:
-	virtual std::unique_ptr<Personality> clone() const override;
+		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const override;
+	};
 
-	Decision makeDecision(const GameResults& aDecisionData, const PlayerNumber& aPlayerNumber) const override;
-};
+	class PersonalityCooperator : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
 
-class PersonalityCopycat : public Personality
-{
-public:
-	virtual std::unique_ptr<Personality> clone() const override;
+		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const override;
+	};
 
-	Decision makeDecision(const GameResults& aDecisionData, const PlayerNumber& aPlayerNumber) const override;
-};
+	class PersonalityCopycat : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const override;
+	};
+
+}

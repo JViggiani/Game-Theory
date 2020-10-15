@@ -7,18 +7,18 @@
 
 namespace Core
 {
-	GameResults Game::run()
+	Data::GameResults Game::run()
 	{
 		BOOST_LOG_TRIVIAL(info) << "Game begin.";
 		
-		GameResults aGameResults;
+		Data::GameResults aGameResults;
 
 		for(int aRoundCount = 0; aRoundCount < _numOfRounds; ++aRoundCount)
 		{
 			Machine* aMachine = Machine::GetInstance();
 
 			//Round results should give the players the information required to make the next decision
-			RoundResults aRoundResults = aMachine->processRound(_player1, _player2, aGameResults);
+			Data::RoundResults aRoundResults = aMachine->processRound(_player1, _player2, aGameResults);
 			
 			aGameResults.update(aRoundResults);
 		}

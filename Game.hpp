@@ -41,7 +41,7 @@ namespace Core
 		///	Functions ///
 
 		//! Run the game loop.
-		GameResults run();
+		Data::GameResults run();
 
 	private:
 

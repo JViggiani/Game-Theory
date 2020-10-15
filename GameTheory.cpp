@@ -38,20 +38,21 @@ int main(int argc, char* argv[])
     {
         BOOST_LOG_TRIVIAL(info) << "Beginning main";
 
-        PersonalityCheater aCheater;
-        PersonalityCooperator aCooperator;
-        PersonalityCopycat aCopycat;
+        //JOSH make a Player factory and stop using this implementation namespace
+        Implementation::PersonalityCheater aCheater;
+        Implementation::PersonalityCooperator aCooperator;
+        Implementation::PersonalityCopycat aCopycat;
         
-        Player aPlayer1(aCheater);
-        Player aPlayer2(aCooperator);
-        Player aPlayer3(aCopycat);
+        Core::Player aPlayer1(aCheater);
+        Core::Player aPlayer2(aCooperator);
+        Core::Player aPlayer3(aCopycat);
         
-        std::shared_ptr<Player> aPlayer1Ptr = std::make_shared<Player>(aPlayer1);
-        std::shared_ptr<Player> aPlayer2Ptr = std::make_shared<Player>(aPlayer2);
-        std::shared_ptr<Player> aPlayer3Ptr = std::make_shared<Player>(aPlayer3);
+        std::shared_ptr<Core::Player> aPlayer1Ptr = std::make_shared<Core::Player>(aPlayer1);
+        std::shared_ptr<Core::Player> aPlayer2Ptr = std::make_shared<Core::Player>(aPlayer2);
+        std::shared_ptr<Core::Player> aPlayer3Ptr = std::make_shared<Core::Player>(aPlayer3);
         
         Core::Game aGame(aPlayer2Ptr, aPlayer3Ptr, 10);
-        GameResults aGameResults = aGame.run();
+        Data::GameResults aGameResults = aGame.run();
     }
     catch(std::exception e)
     {

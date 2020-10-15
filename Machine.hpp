@@ -8,49 +8,52 @@
 #include "Decision.hpp"
 #include "RewardConfig.hpp"
 
-
-//! The Machine is a thread safe Singleton which returns the results of player decisions
-class Machine
+namespace Core
 {
-public:
-    /// Constructors and Destructors ///
 
-    //! Singletons should not be cloneable.
-    Machine(Machine& other) = delete;
+    //! The Machine is a thread safe Singleton which returns the results of player decisions
+    class Machine
+    {
+    public:
+        /// Constructors and Destructors ///
 
-    //! Deleted move constructor
-    Machine(Machine&&) = delete;
+        //! Singletons should not be cloneable.
+        Machine(Machine& other) = delete;
 
-    /// Operators ///
+        //! Deleted move constructor
+        Machine(Machine&&) = delete;
 
-    //! Singletons should not be assignable.
-    void operator=(const Machine&) = delete;
+        /// Operators ///
 
-    //! Singletons should not be moveable.
-    Machine& operator=(Machine&&) = delete;
+        //! Singletons should not be assignable.
+        void operator=(const Machine&) = delete;
 
-    /// Functions ///
+        //! Singletons should not be moveable.
+        Machine& operator=(Machine&&) = delete;
 
-    //! This is the static method that controls the access to the singleton instance. It gaurantees that only one instance is ever made.
-    static Machine* GetInstance();
+        /// Functions ///
 
-    // Returns the results of player decisions based upon input game results so far
-    RoundResults processRound(const std::shared_ptr<Player>& aPlayer1, const std::shared_ptr<Player>& aPlayer2, const GameResults& aGameResults);
+        //! This is the static method that controls the access to the singleton instance. It gaurantees that only one instance is ever made.
+        static Machine* GetInstance();
 
-protected:
-    /// Constructors and Destructors ///
+        // Returns the results of player decisions based upon input game results so far
+        Data::RoundResults processRound(const std::shared_ptr<Player>& aPlayer1, const std::shared_ptr<Player>& aPlayer2, const Data::GameResults& aGameResults);
 
-    //! Can only be constructed from GetInstance()
-    Machine();
+    protected:
+        /// Constructors and Destructors ///
 
-    //! Cannot be destroyed from outside of class
-    ~Machine() = default;
+        //! Can only be constructed from GetInstance()
+        Machine();
 
-private:
-    //This config should never change during execution of the program. It should only be read once at startup
-    RewardConfig _rewardConfig;
+        //! Cannot be destroyed from outside of class
+        ~Machine() = default;
 
-    static Machine* pinstance_;
-    static std::mutex mutex_;
-};
+    private:
+        //This config should never change during execution of the program. It should only be read once at startup
+        Config::RewardConfig _rewardConfig;
 
+        static Machine* pinstance_;
+        static std::mutex mutex_;
+    };
+
+}

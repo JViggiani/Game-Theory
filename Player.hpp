@@ -7,43 +7,47 @@
 #include "Decision.hpp"
 #include "PlayerNumber.hpp"
 
-//! This class is a wrapper around the polymorphic Personality pointer. Decisions should be delegated to the Personality.
-class Player
+namespace Core
 {
-public:
-	/// Constructors and Destructors ///
 
-	//! Main constructor.
-	Player(const Personality& aPersonality);
+	//! This class is a wrapper around the polymorphic Personality pointer. Decisions should be delegated to the Personality.
+	class Player
+	{
+	public:
+		/// Constructors and Destructors ///
 
-	//! Default destructor.
-	~Player() = default;
+		//! Main constructor.
+		Player(const Implementation::Personality& aPersonality);
 
-	//! Copy constructor
-	Player(const Player& aPlayer);
+		//! Default destructor.
+		~Player() = default;
 
-	//! Default move constructor
-	Player(Player&&) = default;
+		//! Copy constructor
+		Player(const Player& aPlayer);
 
-	/// Operators ///
+		//! Default move constructor
+		Player(Player&&) = default;
 
-	//! Default copy assignment
-	Player& operator=(const Player& aPlayer);
+		/// Operators ///
 
-	//! Default move assignment
-	Player& operator=(const Player&& aPlayer) noexcept;
+		//! Default copy assignment
+		Player& operator=(const Player& aPlayer);
 
-	/// Functions ///
+		//! Default move assignment
+		Player& operator=(const Player&& aPlayer) noexcept;
 
-	//Calls the polymorphic Personality makeDecision() function
-	Decision makeDecision(const GameResults& aDecisionData, const PlayerNumber& aPlayerNumber);
+		/// Functions ///
 
-private:
-	/*
-		This must be a pointer because Personality is abstract
-		We want to be able to polymorphically use the correct personality child here
-		Perhaps C++23 will have polymorphic_value<T> :( 
-	*/
-	std::unique_ptr<Personality> _personality;
-};
+		//Calls the polymorphic Personality makeDecision() function
+		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber);
 
+	private:
+		/*
+			This must be a pointer because Personality is abstract
+			We want to be able to polymorphically use the correct personality child here
+			Perhaps C++23 will have polymorphic_value<T> :(
+		*/
+		std::unique_ptr<Implementation::Personality> _personality;
+	};
+
+}

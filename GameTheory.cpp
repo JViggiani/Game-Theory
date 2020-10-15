@@ -39,13 +39,17 @@ int main(int argc, char* argv[])
         BOOST_LOG_TRIVIAL(info) << "Beginning main";
 
         //JOSH make a Player factory and stop using this implementation namespace
-        Implementation::PersonalityCheater aCheater;
-        Implementation::PersonalityCooperator aCooperator;
-        Implementation::PersonalityCopycat aCopycat;
+        //Implementation::PersonalityCheater aCheater;
+        //Implementation::PersonalityCooperator aCooperator;
+        //Implementation::PersonalityCopycat aCopycat;
         
-        Core::Player aPlayer1(aCheater);
-        Core::Player aPlayer2(aCooperator);
-        Core::Player aPlayer3(aCopycat);
+        //Core::Player aPlayer1(aCheater);
+        //Core::Player aPlayer2(aCooperator);
+        //Core::Player aPlayer3(aCopycat);
+
+        Core::Player aPlayer1(Data::ePersonalityType::Cheater);
+        Core::Player aPlayer2(Data::ePersonalityType::Cooperator);
+        Core::Player aPlayer3(Data::ePersonalityType::Copycat);
         
         std::shared_ptr<Core::Player> aPlayer1Ptr = std::make_shared<Core::Player>(aPlayer1);
         std::shared_ptr<Core::Player> aPlayer2Ptr = std::make_shared<Core::Player>(aPlayer2);

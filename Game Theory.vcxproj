@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="eDecisionType.hpp" />
+    <ClInclude Include="ePersonalityType.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameResults.hpp" />
     <ClInclude Include="Machine.hpp" />

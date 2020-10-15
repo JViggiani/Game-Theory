@@ -6,6 +6,7 @@
 #include "RoundResults.hpp"
 #include "eDecisionType.hpp"
 #include "ePlayerNumber.hpp"
+#include "ePersonalityType.hpp"
 
 namespace Core
 {
@@ -17,7 +18,8 @@ namespace Core
 		/// Constructors and Destructors ///
 
 		//! Main constructor.
-		Player(const Implementation::Personality& aPersonality);
+		//Player(const Implementation::Personality& aPersonality);
+		Player(const Data::ePersonalityType& aPersonality);
 
 		//! Default destructor.
 		~Player() = default;

@@ -5,10 +5,28 @@
 
 namespace Core
 {
-
+	/*
 	Player::Player(const Implementation::Personality& aPersonality)
 	{
 		_personality = aPersonality.clone();
+	}
+	*/
+	Player::Player(const Data::ePersonalityType& aPersonality)
+	{
+		switch(aPersonality)
+		{
+		case Data::ePersonalityType::Cheater:
+			_personality = std::make_unique<Implementation::PersonalityCheater>();
+			break;
+		case Data::ePersonalityType::Cooperator:
+			_personality = std::make_unique<Implementation::PersonalityCooperator>();
+			break;
+		case Data::ePersonalityType::Copycat:
+			_personality = std::make_unique<Implementation::PersonalityCopycat>();
+			break;
+		default:
+			throw std::exception("Trying to construct an Unset Personality");
+		}		
 	}
 
 	Player::Player(const Player& aPlayer)

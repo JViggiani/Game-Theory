@@ -59,13 +59,13 @@
     <ClInclude Include="Machine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Decision.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RewardConfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerNumber.hpp">
+    <ClInclude Include="eDecisionType.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ePlayerNumber.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,9 +11,9 @@ namespace Implementation
         return std::make_unique<PersonalityCheater>(*this);
     }
 
-    Data::Decision PersonalityCheater::makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const
+    Data::eDecisionType PersonalityCheater::makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const
     {
-        return Data::Decision::Cheat;
+        return Data::eDecisionType::Cheat;
     }
 
     /*
@@ -25,9 +25,9 @@ namespace Implementation
         return std::make_unique<PersonalityCooperator>(*this);
     }
 
-    Data::Decision PersonalityCooperator::makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const
+    Data::eDecisionType PersonalityCooperator::makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const
     {
-        return Data::Decision::Cooperate;
+        return Data::eDecisionType::Cooperate;
     }
 
     /*
@@ -39,14 +39,14 @@ namespace Implementation
         return std::make_unique<PersonalityCopycat>(*this);
     }
 
-    Data::Decision PersonalityCopycat::makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const
+    Data::eDecisionType PersonalityCopycat::makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const
     {
         if(aDecisionData.getPlayer1Decisions().empty())
         {
-            return Data::Decision::Cooperate;
+            return Data::eDecisionType::Cooperate;
         }
 
-        if(aPlayerNumber == Data::PlayerNumber::One)
+        if(aPlayerNumber == Data::ePlayerNumber::One)
         {
             return aDecisionData.getPlayer2Decisions().back();
         }

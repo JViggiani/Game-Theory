@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Decision.hpp"
+#include "eDecisionType.hpp"
 #include "RewardConfig.hpp"
 
 namespace Data
@@ -9,10 +9,10 @@ namespace Data
 	struct RoundResults
 	{
 	public:
-		RoundResults(const Decision& aDecision1, const Decision& aDecision2, const Config::RewardConfig& aRewardConfig);
+		RoundResults(const eDecisionType& aDecision1, const eDecisionType& aDecision2, const Config::RewardConfig& aRewardConfig);
 
-		Decision _player1Decision;
-		Decision _player2Decision;
+		eDecisionType _player1Decision;
+		eDecisionType _player2Decision;
 
 		int _player1Reward;
 		int _player2Reward;

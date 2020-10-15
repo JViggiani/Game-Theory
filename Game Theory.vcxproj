@@ -151,13 +151,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Decision.hpp" />
+    <ClInclude Include="eDecisionType.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameResults.hpp" />
     <ClInclude Include="Machine.hpp" />
     <ClInclude Include="Personality.hpp" />
     <ClInclude Include="Player.hpp" />
-    <ClInclude Include="PlayerNumber.hpp" />
+    <ClInclude Include="ePlayerNumber.hpp" />
     <ClInclude Include="RewardConfig.hpp" />
     <ClInclude Include="RoundResults.hpp" />
   </ItemGroup>

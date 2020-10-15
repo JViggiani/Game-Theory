@@ -38,8 +38,8 @@ namespace Core
 
     Data::RoundResults Machine::processRound(const std::shared_ptr<Player>& aPlayer1, const std::shared_ptr<Player>& aPlayer2, const Data::GameResults& aGameResults)
     {
-        Data::Decision aPlayer1Decision = aPlayer1->makeDecision(aGameResults, Data::PlayerNumber::One);
-        Data::Decision aPlayer2Decision = aPlayer2->makeDecision(aGameResults, Data::PlayerNumber::Two);
+        Data::eDecisionType aPlayer1Decision = aPlayer1->makeDecision(aGameResults, Data::ePlayerNumber::One);
+        Data::eDecisionType aPlayer2Decision = aPlayer2->makeDecision(aGameResults, Data::ePlayerNumber::Two);
 
         Data::RoundResults aRoundResults(aPlayer1Decision, aPlayer2Decision, _rewardConfig);
         return aRoundResults;

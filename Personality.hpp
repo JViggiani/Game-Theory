@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "GameResults.hpp"
-#include "PlayerNumber.hpp"
+#include "ePlayerNumber.hpp"
 
 namespace Implementation
 {
@@ -38,7 +38,7 @@ namespace Implementation
 		/// Functions ///
 
 		virtual std::unique_ptr<Personality> clone() const = 0;
-		virtual Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const = 0;
+		virtual Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const = 0;
 	};
 
 	class PersonalityCheater : public Personality
@@ -46,7 +46,7 @@ namespace Implementation
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
 
-		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const override;
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const override;
 	};
 
 	class PersonalityCooperator : public Personality
@@ -54,7 +54,7 @@ namespace Implementation
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
 
-		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const override;
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const override;
 	};
 
 	class PersonalityCopycat : public Personality
@@ -62,7 +62,7 @@ namespace Implementation
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
 
-		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber) const override;
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const override;
 	};
 
 }

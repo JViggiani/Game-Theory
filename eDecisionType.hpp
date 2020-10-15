@@ -3,7 +3,7 @@
 namespace Data
 {
 
-    enum class Decision
+    enum class eDecisionType
     {
         Unset = 0,
         Cooperate = 1,

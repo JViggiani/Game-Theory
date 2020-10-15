@@ -3,7 +3,7 @@
 namespace Data
 {
 
-	enum class PlayerNumber
+	enum class ePlayerNumber
 	{
 		Unset = 0,
 		One = 1,

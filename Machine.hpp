@@ -5,7 +5,7 @@
 
 #include "Player.hpp"
 #include "RoundResults.hpp"
-#include "Decision.hpp"
+#include "eDecisionType.hpp"
 #include "RewardConfig.hpp"
 
 namespace Core

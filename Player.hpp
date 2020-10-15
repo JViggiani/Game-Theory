@@ -4,13 +4,13 @@
 
 #include "Personality.hpp"
 #include "RoundResults.hpp"
-#include "Decision.hpp"
-#include "PlayerNumber.hpp"
+#include "eDecisionType.hpp"
+#include "ePlayerNumber.hpp"
 
 namespace Core
 {
 
-	//! This class is a wrapper around the polymorphic Personality pointer. Decisions should be delegated to the Personality.
+	//! This class is a wrapper Proxy around the polymorphic Personality pointer. Decisions should be delegated to the Personality.
 	class Player
 	{
 	public:
@@ -39,7 +39,7 @@ namespace Core
 		/// Functions ///
 
 		//Calls the polymorphic Personality makeDecision() function
-		Data::Decision makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber);
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber);
 
 	private:
 		/*

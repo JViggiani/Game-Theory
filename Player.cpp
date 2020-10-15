@@ -28,7 +28,7 @@ namespace Core
 		return *this;
 	}
 
-	Data::Decision Player::makeDecision(const Data::GameResults& aDecisionData, const Data::PlayerNumber& aPlayerNumber)
+	Data::eDecisionType Player::makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber)
 	{
 		return _personality->makeDecision(aDecisionData, aPlayerNumber);
 	}

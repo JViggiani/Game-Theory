@@ -35,11 +35,11 @@ namespace Data
 
 		/// Functions ///
 
-		std::vector<Decision> const& getPlayer1Decisions() const
+		std::vector<eDecisionType> const& getPlayer1Decisions() const
 		{
 			return _player1Decisions;
 		}
-		std::vector<Decision> const& getPlayer2Decisions() const
+		std::vector<eDecisionType> const& getPlayer2Decisions() const
 		{
 			return _player2Decisions;
 		}
@@ -56,8 +56,8 @@ namespace Data
 		void update(const RoundResults& aRoundResults);
 
 	private:
-		std::vector<Decision> _player1Decisions;
-		std::vector<Decision> _player2Decisions;
+		std::vector<eDecisionType> _player1Decisions;
+		std::vector<eDecisionType> _player2Decisions;
 
 		int _player1Reward;
 		int _player2Reward;

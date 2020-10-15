@@ -142,10 +142,14 @@
     <ClCompile Include="GameTheory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameResults.cpp" />
+    <ClCompile Include="LoggingConfig.cpp" />
     <ClCompile Include="Machine.cpp" />
     <ClCompile Include="Personality.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RoundResults.cpp" />
+    <ClCompile Include="Tournament.cpp" />
+    <ClCompile Include="TournamentConfig.cpp" />
+    <ClCompile Include="TournamentResults.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -155,12 +159,16 @@
     <ClInclude Include="ePersonalityType.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameResults.hpp" />
+    <ClInclude Include="LoggingConfig.hpp" />
     <ClInclude Include="Machine.hpp" />
     <ClInclude Include="Personality.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="ePlayerNumber.hpp" />
     <ClInclude Include="RewardConfig.hpp" />
     <ClInclude Include="RoundResults.hpp" />
+    <ClInclude Include="Tournament.hpp" />
+    <ClInclude Include="TournamentConfig.hpp" />
+    <ClInclude Include="TournamentResults.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

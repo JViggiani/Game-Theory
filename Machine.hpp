@@ -8,6 +8,7 @@
 #include "eDecisionType.hpp"
 #include "RewardConfig.hpp"
 
+//JOSH should this be Core or Implementation? Consider...
 namespace Core
 {
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 #include "Personality.hpp"
 #include "RoundResults.hpp"
@@ -19,7 +20,7 @@ namespace Core
 
 		//! Main constructor.
 		//Player(const Implementation::Personality& aPersonality);
-		Player(const Data::ePersonalityType& aPersonality);
+		Player(const Data::ePersonalityType& aPersonality, const int& aId);
 
 		//! Default destructor.
 		~Player() = default;
@@ -43,13 +44,30 @@ namespace Core
 		//Calls the polymorphic Personality makeDecision() function
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber);
 
+		int getId() const
+		{
+			return _id;
+		}
+
+		Data::ePersonalityType getPersonalityType() const
+		{
+			return _personalityType;
+		}
+
+		std::string getPersonalityTypeStr() const;
+
 	private:
 		/*
+			This Personality makes the important decisions. It does not hold any data.
+			
 			This must be a pointer because Personality is abstract
 			We want to be able to polymorphically use the correct personality child here
 			Perhaps C++23 will have polymorphic_value<T> :(
 		*/
 		std::unique_ptr<Implementation::Personality> _personality;
+
+		int _id;
+		Data::ePersonalityType _personalityType;
 	};
 
 }

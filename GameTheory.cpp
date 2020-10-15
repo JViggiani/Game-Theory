@@ -10,21 +10,30 @@
 #include <boost/log/utility/setup/file.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 
-#include "Game.hpp"
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/ini_parser.hpp>
 
-void init_logging()
+#include "Game.hpp"
+#include "TournamentConfig.hpp"
+#include "LoggingConfig.hpp"
+#include "Tournament.hpp"
+
+void init_logging(const Config::LoggingConfig& aLoggingConfig)
 {
     boost::log::register_simple_formatter_factory<boost::log::trivial::severity_level, char>("Severity");
 
+    std::string aFileNamePath = "./" + aLoggingConfig._logFileDirectory + "/" + aLoggingConfig._logFileName + ".log";
+
     boost::log::add_file_log
     (
-        boost::log::keywords::file_name = "./Log/Sample.log",
+        //boost::log::keywords::file_name = "./Log/Sample.log",
+        boost::log::keywords::file_name = aFileNamePath.c_str(),
         boost::log::keywords::format = "[%TimeStamp%] [%ThreadID%] [%Severity%] %Message%"
     );
-
+    
     boost::log::core::get()->set_filter
-    (
-        boost::log::trivial::severity >= boost::log::trivial::info
+    (  
+        boost::log::trivial::severity >= aLoggingConfig._severity
     );
 
     boost::log::add_common_attributes();
@@ -32,31 +41,19 @@ void init_logging()
 
 int main(int argc, char* argv[])
 {
-    init_logging();
-    
     try
     {
+        //Init logging
+        Config::LoggingConfig aLoggingConfig;
+        init_logging(aLoggingConfig);
+        
         BOOST_LOG_TRIVIAL(info) << "Beginning main";
 
-        //JOSH make a Player factory and stop using this implementation namespace
-        //Implementation::PersonalityCheater aCheater;
-        //Implementation::PersonalityCooperator aCooperator;
-        //Implementation::PersonalityCopycat aCopycat;
-        
-        //Core::Player aPlayer1(aCheater);
-        //Core::Player aPlayer2(aCooperator);
-        //Core::Player aPlayer3(aCopycat);
+        Config::TournamentConfig aTournementConfig;
 
-        Core::Player aPlayer1(Data::ePersonalityType::Cheater);
-        Core::Player aPlayer2(Data::ePersonalityType::Cooperator);
-        Core::Player aPlayer3(Data::ePersonalityType::Copycat);
-        
-        std::shared_ptr<Core::Player> aPlayer1Ptr = std::make_shared<Core::Player>(aPlayer1);
-        std::shared_ptr<Core::Player> aPlayer2Ptr = std::make_shared<Core::Player>(aPlayer2);
-        std::shared_ptr<Core::Player> aPlayer3Ptr = std::make_shared<Core::Player>(aPlayer3);
-        
-        Core::Game aGame(aPlayer2Ptr, aPlayer3Ptr, 10);
-        Data::GameResults aGameResults = aGame.run();
+        Core::Tournament aTournament(aTournementConfig);
+
+        Data::TournamentResults aTournamentResults = aTournament.run();
     }
     catch(std::exception e)
     {

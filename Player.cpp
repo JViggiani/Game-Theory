@@ -11,8 +11,11 @@ namespace Core
 		_personality = aPersonality.clone();
 	}
 	*/
-	Player::Player(const Data::ePersonalityType& aPersonality)
+	Player::Player(const Data::ePersonalityType& aPersonality, const int& aId)
 	{
+		_id = aId;
+		_personalityType = aPersonality;
+
 		switch(aPersonality)
 		{
 		case Data::ePersonalityType::Cheater:
@@ -49,6 +52,21 @@ namespace Core
 	Data::eDecisionType Player::makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber)
 	{
 		return _personality->makeDecision(aDecisionData, aPlayerNumber);
+	}
+
+	std::string Player::getPersonalityTypeStr() const
+	{
+		switch(_personalityType)
+		{
+		case Data::ePersonalityType::Cheater:
+			return "CHEATER";
+		case Data::ePersonalityType::Cooperator:
+			return "COOPERATOR";
+		case Data::ePersonalityType::Copycat:
+			return "COPYCAT";
+		default:
+			throw std::exception("Could not determine personality type. Did you forget to declare it in ePersonalityType?");
+		}
 	}
 
 }

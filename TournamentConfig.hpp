@@ -11,6 +11,7 @@ namespace Config
 		// Tournament Config
 		int _numOfEvolutions;
 		int _numOfRounds;
+		int _numOfEliminationEvolutions;
 
 		//Personalities
 		int _numCheaters;

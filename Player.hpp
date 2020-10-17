@@ -54,7 +54,16 @@ namespace Core
 			return _personalityType;
 		}
 
-		std::string getPersonalityTypeStr() const;
+		//std::string getPersonalityTypeStr() const;
+
+		int getCumulativeReward() const
+		{
+			return _cumulativeReward;
+		}
+
+		void updateGameReward(const Data::GameResults& aGameResults, const Data::ePlayerNumber& aPlayerNumber);
+
+		void resetGameReward();
 
 	private:
 		/*
@@ -66,7 +75,8 @@ namespace Core
 		*/
 		std::unique_ptr<Implementation::Personality> _personality;
 
-		int _id;
+		unsigned int _id;
+		int _cumulativeReward;
 		Data::ePersonalityType _personalityType;
 	};
 

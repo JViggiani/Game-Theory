@@ -4,7 +4,7 @@
 #include "TournamentResults.hpp"
 #include "Player.hpp"
 
-#include <vector>
+#include <set>
 
 namespace Core
 {
@@ -40,8 +40,14 @@ namespace Core
 		Data::TournamentResults run();
 
 	private:
+		void iterate();
+		void evolve();
+		void resetGameRewards();
+		
+		//We use a multiset because we want to keep the players ordered
 		std::vector<std::shared_ptr<Core::Player> > _players;
 		int _numOfEvolutions;
 		int _numOfRounds;
+		int _numOfEliminationEvolutions;
 	};
 }

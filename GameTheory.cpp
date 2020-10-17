@@ -39,6 +39,16 @@ void init_logging(const Config::LoggingConfig& aLoggingConfig)
     boost::log::add_common_attributes();
 }
 
+void printTournamentResults(const Data::TournamentResults& aTournamentResults)
+{
+    BOOST_LOG_TRIVIAL(info) << "Tournament results:";
+
+    for(auto aPersonalityType : aTournamentResults._tournamentEndPlayerComposition)
+    {
+        BOOST_LOG_TRIVIAL(info) << "Personality " << std::to_string(static_cast<int>(aPersonalityType.first)) << " count:" << std::to_string(aPersonalityType.second);
+    }
+}
+
 int main(int argc, char* argv[])
 {
     try
@@ -47,13 +57,16 @@ int main(int argc, char* argv[])
         Config::LoggingConfig aLoggingConfig;
         init_logging(aLoggingConfig);
         
-        BOOST_LOG_TRIVIAL(info) << "Beginning main";
+        BOOST_LOG_TRIVIAL(info) << "Beginning main.";
 
+        //Build and run tournament
         Config::TournamentConfig aTournementConfig;
-
         Core::Tournament aTournament(aTournementConfig);
-
         Data::TournamentResults aTournamentResults = aTournament.run();
+
+        printTournamentResults(aTournamentResults);
+
+        BOOST_LOG_TRIVIAL(info) << "Finishing main.";
     }
     catch(std::exception e)
     {

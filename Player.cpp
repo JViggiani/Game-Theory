@@ -15,6 +15,8 @@ namespace Core
 	{
 		_id = aId;
 		_personalityType = aPersonality;
+		// Reward can go negative but should start at 0
+		_cumulativeReward = 0;
 
 		switch(aPersonality)
 		{
@@ -54,6 +56,7 @@ namespace Core
 		return _personality->makeDecision(aDecisionData, aPlayerNumber);
 	}
 
+	/*
 	std::string Player::getPersonalityTypeStr() const
 	{
 		switch(_personalityType)
@@ -67,6 +70,28 @@ namespace Core
 		default:
 			throw std::exception("Could not determine personality type. Did you forget to declare it in ePersonalityType?");
 		}
+	}
+	*/
+
+	void Player::updateGameReward(const Data::GameResults& aGameResults, const Data::ePlayerNumber& aPlayerNumber)
+	{
+		if(aPlayerNumber == Data::ePlayerNumber::One)
+		{
+			this->_cumulativeReward += aGameResults.getPlayer1Reward();
+		}
+		else if(aPlayerNumber == Data::ePlayerNumber::Two)
+		{
+			this->_cumulativeReward += aGameResults.getPlayer2Reward();
+		}
+		else
+		{
+			throw std::exception("Player number was not set in Player::updateGameRewards. Could not update game rewards!");
+		}
+	}
+
+	void Player::resetGameReward()
+	{
+		_cumulativeReward = 0;
 	}
 
 }

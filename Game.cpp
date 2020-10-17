@@ -11,9 +11,9 @@ namespace Core
 	{
 		BOOST_LOG_TRIVIAL(info) << "Running game."; 
 		BOOST_LOG_TRIVIAL(info) << "Player 1 ID: " << _player1->getId();
-		BOOST_LOG_TRIVIAL(debug) << "Player 1 Personality: " << _player1->getPersonalityTypeStr();
+		BOOST_LOG_TRIVIAL(debug) << "Player 1 Personality: " << std::to_string(static_cast<int>(_player1->getPersonalityType()));
 		BOOST_LOG_TRIVIAL(info) << "Player 2 ID: " << _player2->getId();
-		BOOST_LOG_TRIVIAL(debug) << "Player 2 Personality: " << _player2->getPersonalityTypeStr();
+		BOOST_LOG_TRIVIAL(debug) << "Player 2 Personality: " << std::to_string(static_cast<int>(_player2->getPersonalityType()));
 
 		Data::GameResults aGameResults;
 
@@ -27,8 +27,14 @@ namespace Core
 			aGameResults.update(aRoundResults);
 		}
 
+		BOOST_LOG_TRIVIAL(info) << "Updating Players with rewards.";
+
 		BOOST_LOG_TRIVIAL(debug) << "Player 1 reward: " << aGameResults.getPlayer1Reward();
 		BOOST_LOG_TRIVIAL(debug) << "Player 2 reward: " << aGameResults.getPlayer2Reward();
+
+		_player1->updateGameReward(aGameResults, Data::ePlayerNumber::One);
+		_player2->updateGameReward(aGameResults, Data::ePlayerNumber::Two);
+
 		BOOST_LOG_TRIVIAL(info) << "Game finished.";
 
 		return aGameResults;

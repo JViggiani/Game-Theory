@@ -53,7 +53,9 @@ namespace Data
 			return _player2Reward;
 		}
 
-		void update(const RoundResults& aRoundResults);
+		//Moves the data from the given RoundResults object into the game results.
+		//	Do not use the RoundResults object after calling this function
+		void update(RoundResults& aRoundResults);
 
 	private:
 		std::vector<eDecisionType> _player1Decisions;

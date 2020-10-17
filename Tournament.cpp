@@ -93,9 +93,13 @@ namespace Core
             _players.pop_back();
         }
 
+        // JOSH what is ID used for? When we copy we lose it's use..
+
         // Evolve top players
         std::vector<std::shared_ptr<Core::Player> > aEvolvePlayers(_players .begin(), _players.begin() + _numOfEliminationEvolutions);
-        _players.insert(std::end(_players), std::begin(aEvolvePlayers), std::end(aEvolvePlayers));
+        //_players.insert(std::end(_players), std::begin(aEvolvePlayers), std::end(aEvolvePlayers));
+        _players.insert(_players.end(), std::make_move_iterator(aEvolvePlayers.begin()),
+                  std::make_move_iterator(aEvolvePlayers.end()));
 
         resetGameRewards();
     }

@@ -10,10 +10,15 @@ namespace Core
 	Data::GameResults Game::run()
 	{
 		BOOST_LOG_TRIVIAL(info) << "Running game."; 
-		//BOOST_LOG_TRIVIAL(info) << "Player 1 ID: " << _player1->getId();
+		BOOST_LOG_TRIVIAL(info) << "Player 1 ID: " << _player1->getId();
 		BOOST_LOG_TRIVIAL(debug) << "Player 1 Personality: " << std::to_string(static_cast<int>(_player1->getPersonalityType()));
-		//BOOST_LOG_TRIVIAL(info) << "Player 2 ID: " << _player2->getId();
+		BOOST_LOG_TRIVIAL(info) << "Player 2 ID: " << _player2->getId();
 		BOOST_LOG_TRIVIAL(debug) << "Player 2 Personality: " << std::to_string(static_cast<int>(_player2->getPersonalityType()));
+
+		if(_player1->getId() == _player2->getId())
+		{
+			throw std::exception("Comparing the same players to each other. Cannot run game.");
+		}
 
 		Data::GameResults aGameResults;
 

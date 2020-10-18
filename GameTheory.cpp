@@ -26,7 +26,6 @@ void init_logging(const Config::LoggingConfig& aLoggingConfig)
 
     boost::log::add_file_log
     (
-        //boost::log::keywords::file_name = "./Log/Sample.log",
         boost::log::keywords::file_name = aFileNamePath.c_str(),
         boost::log::keywords::format = "[%TimeStamp%] [%ThreadID%] [%Severity%] %Message%"
     );

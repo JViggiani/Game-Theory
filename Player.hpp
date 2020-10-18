@@ -20,7 +20,7 @@ namespace Core
 
 		//! Main constructor.
 		//Player(const Implementation::Personality& aPersonality);
-		Player(const Data::ePersonalityType& aPersonality, const int& aId);
+		Player(const Data::ePersonalityType& aPersonality);
 
 		//! Default destructor.
 		~Player() = default;
@@ -43,12 +43,12 @@ namespace Core
 
 		//Calls the polymorphic Personality makeDecision() function
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber);
-		/*
+
 		int getId() const
 		{
 			return _id;
 		}
-		*/
+
 		Data::ePersonalityType getPersonalityType() const
 		{
 			return _personalityType;
@@ -76,6 +76,7 @@ namespace Core
 		std::unique_ptr<Implementation::Personality> _personality;
 
 		unsigned int _id;
+		unsigned static int _idCounter;
 		int _cumulativeReward;
 		Data::ePersonalityType _personalityType;
 	};

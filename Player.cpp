@@ -5,15 +5,18 @@
 
 namespace Core
 {
+	unsigned int Player::_idCounter;
+	
 	/*
 	Player::Player(const Implementation::Personality& aPersonality)
 	{
 		_personality = aPersonality.clone();
 	}
 	*/
-	Player::Player(const Data::ePersonalityType& aPersonality, const int& aId)
+	Player::Player(const Data::ePersonalityType& aPersonality)
 	{
-		_id = aId;
+		_id = _idCounter;
+		_idCounter++;
 		_personalityType = aPersonality;
 		// Reward can go negative but should start at 0
 		_cumulativeReward = 0;
@@ -37,17 +40,29 @@ namespace Core
 	Player::Player(const Player& aPlayer)
 	{
 		_personality = aPlayer._personality->clone();
+		_personalityType = aPlayer._personalityType;
+		_id = _idCounter;
+		_idCounter++;
+		_cumulativeReward = aPlayer._cumulativeReward;
 	}
 
 	Player& Player::operator=(const Player& aPlayer)
 	{
-		this->_personality = aPlayer._personality->clone();
+		_personality = aPlayer._personality->clone();
+		_personalityType = aPlayer._personalityType;
+		_id = _idCounter;
+		_idCounter++;
+		_cumulativeReward = aPlayer._cumulativeReward;
 		return *this;
 	}
 
 	Player& Player::operator=(const Player&& aPlayer) noexcept
 	{
-		this->_personality = aPlayer._personality->clone();
+		_personality = aPlayer._personality->clone();
+		_personalityType = aPlayer._personalityType;
+		_id = _idCounter;
+		_idCounter++;
+		_cumulativeReward = aPlayer._cumulativeReward;
 		return *this;
 	}
 
@@ -55,23 +70,6 @@ namespace Core
 	{
 		return _personality->makeDecision(aDecisionData, aPlayerNumber);
 	}
-
-	/*
-	std::string Player::getPersonalityTypeStr() const
-	{
-		switch(_personalityType)
-		{
-		case Data::ePersonalityType::Cheater:
-			return "CHEATER";
-		case Data::ePersonalityType::Cooperator:
-			return "COOPERATOR";
-		case Data::ePersonalityType::Copycat:
-			return "COPYCAT";
-		default:
-			throw std::exception("Could not determine personality type. Did you forget to declare it in ePersonalityType?");
-		}
-	}
-	*/
 
 	void Player::updateGameReward(const Data::GameResults& aGameResults, const Data::ePlayerNumber& aPlayerNumber)
 	{

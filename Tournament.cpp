@@ -18,23 +18,18 @@ namespace Core
         _numOfRounds = aTournamentConfig._numOfRounds;
         _numOfEliminationEvolutions = aTournamentConfig._numOfEliminationEvolutions;
 
-        int aIdCount = 0;
-
         //Populate Players
         for(int i = 0; i < aTournamentConfig._numCheaters; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Cheater, aIdCount)));
-            ++aIdCount;
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Cheater)));
         }
         for(int i = 0; i < aTournamentConfig._numCooperators; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Cooperator, aIdCount)));
-            ++aIdCount;
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Cooperator)));
         }
         for(int i = 0; i < aTournamentConfig._numCopycats; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Copycat, aIdCount)));
-            ++aIdCount;
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Copycat)));
         }
 	}
 	
@@ -58,16 +53,16 @@ namespace Core
     void Tournament::iterate()
     {
         //JOSH fix this iteration. You should use container iterators.. 
-        for(int aOuterPlayerIt = 0; aOuterPlayerIt < _players.size(); aOuterPlayerIt++)
+        for(auto aOuterPlayerIt = _players.begin(); aOuterPlayerIt != _players.end(); aOuterPlayerIt++)
         {
-            for(int aInnerPlayerIt = 0; aInnerPlayerIt < _players.size() - 1; aInnerPlayerIt++)
+            for(auto aInnerPlayerIt = _players.begin(); aInnerPlayerIt != _players.end(); aInnerPlayerIt++)
             {
                 if(aOuterPlayerIt == aInnerPlayerIt)
                 {
                     continue;
                 }
 
-                Core::Game aGame(_players[aOuterPlayerIt], _players[aInnerPlayerIt], _numOfRounds);
+                Core::Game aGame(*aOuterPlayerIt, *aInnerPlayerIt, _numOfRounds);
                 Data::GameResults aGameResults = aGame.run();
             }
         }
@@ -80,28 +75,31 @@ namespace Core
     */
     void Tournament::evolve()
     {
-        // First sort players
-        std::sort(_players.begin(), _players.end(),
-                             [](const std::shared_ptr<Core::Player>& a, const std::shared_ptr<Core::Player>& b)
-        {
-            return a->getCumulativeReward() > b->getCumulativeReward();
-        } );
+		// First sort players
+		std::sort(_players.begin(), _players.end(),
+				  [](const std::shared_ptr<Core::Player>& a, const std::shared_ptr<Core::Player>& b)
+		{
+			return a->getCumulativeReward() > b->getCumulativeReward();
+		});
 
-        // Eliminate bottom players
-        for(int aPlayerEliminateIt = 0; aPlayerEliminateIt < _numOfEliminationEvolutions; aPlayerEliminateIt++)
-        {
-            _players.pop_back();
-        }
+		// Eliminate bottom players
+		for(int aPlayerEliminateIt = 0; aPlayerEliminateIt < _numOfEliminationEvolutions; aPlayerEliminateIt++)
+		{
+			_players.pop_back();
+		}
 
-        // JOSH what is ID used for? When we copy we lose it's use..
+		// Evolve top players
+		std::vector<std::shared_ptr<Core::Player> > aEvolvePlayers;
+		std::transform(_players.begin(), _players.begin() + _numOfEliminationEvolutions, std::back_inserter(aEvolvePlayers),
+					   [](const std::shared_ptr<Core::Player>& ptr) -> std::shared_ptr<Core::Player>
+		{
+			return std::make_shared<Core::Player>(*ptr);
+		});
+		_players.insert(_players.end(), std::make_move_iterator(aEvolvePlayers.begin()),
+						std::make_move_iterator(aEvolvePlayers.end()));
 
-        // Evolve top players
-        std::vector<std::shared_ptr<Core::Player> > aEvolvePlayers(_players .begin(), _players.begin() + _numOfEliminationEvolutions);
-        //_players.insert(std::end(_players), std::begin(aEvolvePlayers), std::end(aEvolvePlayers));
-        _players.insert(_players.end(), std::make_move_iterator(aEvolvePlayers.begin()),
-                  std::make_move_iterator(aEvolvePlayers.end()));
-
-        resetGameRewards();
+		// Reset game rewards so there is no carry over into the next games
+		resetGameRewards();
     }
 
     void Tournament::resetGameRewards()

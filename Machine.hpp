@@ -6,7 +6,7 @@
 #include "Player.hpp"
 #include "RoundResults.hpp"
 #include "eDecisionType.hpp"
-#include "RewardConfig.hpp"
+#include "GameConfig.hpp"
 
 //JOSH should this be Core or Implementation? Consider...
 namespace Core
@@ -44,14 +44,14 @@ namespace Core
         /// Constructors and Destructors ///
 
         //! Can only be constructed from GetInstance()
-        Machine();
+        Machine() = default;
 
         //! Cannot be destroyed from outside of class
         ~Machine() = default;
 
     private:
         //This config should never change during execution of the program. It should only be read once at startup
-        Config::RewardConfig _rewardConfig;
+        Config::GameConfig _gameConfig;
 
         static Machine* pinstance_;
         static std::mutex mutex_;

@@ -38,7 +38,10 @@ namespace Implementation
 		/// Functions ///
 
 		virtual std::unique_ptr<Personality> clone() const = 0;
-		virtual Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const = 0;
+		virtual Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const = 0;
+
+	protected:
+		Data::eDecisionType calculateMistake(const Data::eDecisionType& aCurrentDecision, unsigned int aMistakeChance) const;
 	};
 
 	class PersonalityCheater : public Personality
@@ -46,7 +49,7 @@ namespace Implementation
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
 
-		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const override;
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
 	class PersonalityCooperator : public Personality
@@ -54,7 +57,7 @@ namespace Implementation
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
 
-		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const override;
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
 	class PersonalityCopycat : public Personality
@@ -62,7 +65,7 @@ namespace Implementation
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
 
-		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const override;
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "eDecisionType.hpp"
-#include "RewardConfig.hpp"
+#include "GameConfig.hpp"
 
 namespace Data
 {
@@ -9,7 +9,7 @@ namespace Data
 	struct RoundResults
 	{
 	public:
-		RoundResults(const eDecisionType& aDecision1, const eDecisionType& aDecision2, const Config::RewardConfig& aRewardConfig);
+		RoundResults(const eDecisionType& aDecision1, const eDecisionType& aDecision2, const Config::GameConfig& aRewardConfig);
 
 		eDecisionType _player1Decision;
 		eDecisionType _player2Decision;

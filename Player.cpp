@@ -66,9 +66,9 @@ namespace Core
 		return *this;
 	}
 
-	Data::eDecisionType Player::makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber)
+	Data::eDecisionType Player::makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance)
 	{
-		return _personality->makeDecision(aDecisionData, aPlayerNumber);
+		return _personality->makeDecision(aDecisionData, aPlayerNumber, aMistakeChance);
 	}
 
 	void Player::updateGameReward(const Data::GameResults& aGameResults, const Data::ePlayerNumber& aPlayerNumber)

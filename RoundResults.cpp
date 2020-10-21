@@ -6,29 +6,29 @@
 namespace Data
 {
 
-	RoundResults::RoundResults(const eDecisionType& aDecisionPlayer1, const eDecisionType& aDecisionPlayer2, const Config::RewardConfig& aRewardConfig)
+	RoundResults::RoundResults(const eDecisionType& aDecisionPlayer1, const eDecisionType& aDecisionPlayer2, const Config::GameConfig& aGameConfig)
 		: _player1Decision(aDecisionPlayer1),
 		_player2Decision(aDecisionPlayer2)
 	{
 		if(aDecisionPlayer1 == eDecisionType::Cooperate && aDecisionPlayer2 == eDecisionType::Cooperate)
 		{
-			_player1Reward = aRewardConfig._bothCooperate;
-			_player2Reward = aRewardConfig._bothCooperate;
+			_player1Reward = aGameConfig._bothCooperate;
+			_player2Reward = aGameConfig._bothCooperate;
 		}
 		else if(aDecisionPlayer1 == eDecisionType::Cheat && aDecisionPlayer2 == eDecisionType::Cheat)
 		{
-			_player1Reward = aRewardConfig._bothCheat;
-			_player2Reward = aRewardConfig._bothCheat;
+			_player1Reward = aGameConfig._bothCheat;
+			_player2Reward = aGameConfig._bothCheat;
 		}
 		else if(aDecisionPlayer1 == eDecisionType::Cooperate && aDecisionPlayer2 == eDecisionType::Cheat)
 		{
-			_player1Reward = aRewardConfig._cooperate;
-			_player2Reward = aRewardConfig._cheat;
+			_player1Reward = aGameConfig._cooperate;
+			_player2Reward = aGameConfig._cheat;
 		}
 		else if(aDecisionPlayer1 == eDecisionType::Cheat && aDecisionPlayer2 == eDecisionType::Cooperate)
 		{
-			_player1Reward = aRewardConfig._cheat;
-			_player2Reward = aRewardConfig._cooperate;
+			_player1Reward = aGameConfig._cheat;
+			_player2Reward = aGameConfig._cooperate;
 		}
 		else
 		{

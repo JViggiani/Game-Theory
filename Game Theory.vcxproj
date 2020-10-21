@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameConfig.cpp" />
     <ClCompile Include="GameTheory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameResults.cpp" />
@@ -166,7 +167,7 @@
     <ClInclude Include="Personality.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="ePlayerNumber.hpp" />
-    <ClInclude Include="RewardConfig.hpp" />
+    <ClInclude Include="GameConfig.hpp" />
     <ClInclude Include="RoundResults.hpp" />
     <ClInclude Include="Tournament.hpp" />
     <ClInclude Include="TournamentConfig.hpp" />

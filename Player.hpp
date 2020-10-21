@@ -42,7 +42,10 @@ namespace Core
 		/// Functions ///
 
 		//Calls the polymorphic Personality makeDecision() function
-		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber);
+		/*
+			aMistakeChance is a int between 0 and 100
+		*/
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance);
 
 		int getId() const
 		{

@@ -5,6 +5,7 @@
 
 #include "GameResults.hpp"
 #include "ePlayerNumber.hpp"
+#include "eWinLose.hpp"
 
 namespace Implementation
 {
@@ -66,6 +67,48 @@ namespace Implementation
 		virtual std::unique_ptr<Personality> clone() const override;
 
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+	};
+
+	class PersonalityVengeful : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+	};
+
+	class PersonalityCopykitten : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+	};
+
+	class PersonalityMeanCopycat : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+	};
+
+	class PersonalityRandom : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+	};
+
+	class PersonalityWinStayLoseSwitch : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+	private:
+		Data::eWinLose determineIfWinOrLose(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const;
 	};
 
 }

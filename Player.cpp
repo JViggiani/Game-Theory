@@ -2,6 +2,9 @@
 
 #include <string>
 #include <exception>
+#include <numeric>
+
+#include <boost/log/trivial.hpp>
 
 namespace Core
 {
@@ -32,8 +35,23 @@ namespace Core
 		case Data::ePersonalityType::Copycat:
 			_personality = std::make_unique<Implementation::PersonalityCopycat>();
 			break;
+		case Data::ePersonalityType::Copykitten:
+			_personality = std::make_unique<Implementation::PersonalityCopykitten>();
+			break;
+		case Data::ePersonalityType::MeanCopycat:
+			_personality = std::make_unique<Implementation::PersonalityMeanCopycat>();
+			break;
+		case Data::ePersonalityType::Random:
+			_personality = std::make_unique<Implementation::PersonalityRandom>();
+			break;
+		case Data::ePersonalityType::Vengeful:
+			_personality = std::make_unique<Implementation::PersonalityVengeful>();
+			break;
+		case Data::ePersonalityType::WinStayLoseSwitch:
+			_personality = std::make_unique<Implementation::PersonalityWinStayLoseSwitch>();
+			break;
 		default:
-			throw std::exception("Trying to construct an Unset Personality");
+			throw std::exception("Trying to construct an Unset or unknown Personality");
 		}		
 	}
 
@@ -75,11 +93,17 @@ namespace Core
 	{
 		if(aPlayerNumber == Data::ePlayerNumber::One)
 		{
-			this->_cumulativeReward += aGameResults.getPlayer1Reward();
+			int aCumulativeReward = std::accumulate(aGameResults.getPlayer1Reward().begin(), aGameResults.getPlayer1Reward().end(), 0);
+			
+			BOOST_LOG_TRIVIAL(debug) << "Player 1 reward: " << aCumulativeReward;
+			this->_cumulativeReward += aCumulativeReward;
 		}
 		else if(aPlayerNumber == Data::ePlayerNumber::Two)
 		{
-			this->_cumulativeReward += aGameResults.getPlayer2Reward();
+			int aCumulativeReward = std::accumulate(aGameResults.getPlayer2Reward().begin(), aGameResults.getPlayer2Reward().end(), 0);
+
+			BOOST_LOG_TRIVIAL(debug) << "Player 2 reward: " << aCumulativeReward;
+			this->_cumulativeReward += aCumulativeReward;
 		}
 		else
 		{

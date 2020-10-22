@@ -14,7 +14,7 @@ namespace Data
 		/// Constructors and Destructors ///
 
 		//! Main constructor.
-		GameResults();
+		GameResults() = default;
 
 		//! Default destructor.
 		~GameResults() = default;
@@ -44,13 +44,13 @@ namespace Data
 			return _player2Decisions;
 		}
 
-		int getPlayer1Reward() const
+		const std::vector<int>& getPlayer1Reward() const
 		{
-			return _player1Reward;
+			return _player1Rewards;
 		}
-		int getPlayer2Reward() const
+		const std::vector<int>& getPlayer2Reward() const
 		{
-			return _player2Reward;
+			return _player2Rewards;
 		}
 
 		//Moves the data from the given RoundResults object into the game results.
@@ -61,8 +61,8 @@ namespace Data
 		std::vector<eDecisionType> _player1Decisions;
 		std::vector<eDecisionType> _player2Decisions;
 
-		int _player1Reward;
-		int _player2Reward;
+		std::vector<int> _player1Rewards;
+		std::vector<int> _player2Rewards;
 	};
 
 }

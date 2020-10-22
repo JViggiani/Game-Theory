@@ -31,6 +31,26 @@ namespace Core
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Copycat)));
         }
+        for(int i = 0; i < aTournamentConfig._numVengeful; ++i)
+        {
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Vengeful)));
+        }
+        for(int i = 0; i < aTournamentConfig._numCopykitten; ++i)
+        {
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Copykitten)));
+        }
+        for(int i = 0; i < aTournamentConfig._numMeanCopycat; ++i)
+        {
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::MeanCopycat)));
+        }
+        for(int i = 0; i < aTournamentConfig._numRandom; ++i)
+        {
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Random)));
+        }
+        for(int i = 0; i < aTournamentConfig._numWinStayLoseSwitch; ++i)
+        {
+            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::WinStayLoseSwitch)));
+        }
 	}
 	
     Data::TournamentResults Core::Tournament::run()
@@ -52,7 +72,6 @@ namespace Core
     //Represents one iteration by comparing each player to every other player. 
     void Tournament::iterate()
     {
-        //JOSH fix this iteration. You should use container iterators.. 
         for(auto aOuterPlayerIt = _players.begin(); aOuterPlayerIt != _players.end(); aOuterPlayerIt++)
         {
             for(auto aInnerPlayerIt = _players.begin(); aInnerPlayerIt != _players.end(); aInnerPlayerIt++)

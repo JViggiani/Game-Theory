@@ -34,9 +34,6 @@ namespace Core
 
 		BOOST_LOG_TRIVIAL(info) << "Updating Players with rewards.";
 
-		BOOST_LOG_TRIVIAL(debug) << "Player 1 reward: " << aGameResults.getPlayer1Reward();
-		BOOST_LOG_TRIVIAL(debug) << "Player 2 reward: " << aGameResults.getPlayer2Reward();
-
 		_player1->updateGameReward(aGameResults, Data::ePlayerNumber::One);
 		_player2->updateGameReward(aGameResults, Data::ePlayerNumber::Two);
 

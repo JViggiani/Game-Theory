@@ -28,6 +28,11 @@ namespace Config
 		_numCheaters = pt.get<int>("Players.Cheaters");
 		_numCooperators = pt.get<int>("Players.Cooperators");
 		_numCopycats = pt.get<int>("Players.Copycats");
+		_numVengeful = pt.get<int>("Players.Vengeful");
+		_numCopykitten = pt.get<int>("Players.Copykitten");
+		_numMeanCopycat = pt.get<int>("Players.MeanCopycat");
+		_numRandom = pt.get<int>("Players.Random");
+		_numWinStayLoseSwitch = pt.get<int>("Players.WinStayLoseSwitch");
 
 		if(_numCheaters + _numCooperators + _numCopycats / 2 < _numOfEliminationEvolutions)
 		{

@@ -98,5 +98,8 @@
     <ClInclude Include="GameConfig.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="eWinLose.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

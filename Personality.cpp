@@ -19,7 +19,7 @@ namespace Implementation
         std::random_device aSeed;
         std::default_random_engine aRandomEngine(aSeed());
         std::uniform_int_distribution<int> aIntDistribution(0, 99);
-        int aRandomNumber = aIntDistribution(aRandomEngine);
+        unsigned int aRandomNumber = aIntDistribution(aRandomEngine);
 
         if(aMistakeChance > aRandomNumber)
         {
@@ -135,29 +135,11 @@ namespace Implementation
         
         if(aPlayerNumber == Data::ePlayerNumber::One)
         {
-			if(std::find(aDecisionData.getPlayer2Decisions().begin(),
-			   aDecisionData.getPlayer2Decisions().end(),
-			   Data::eDecisionType::Cheat) != aDecisionData.getPlayer2Decisions().end())
-            {
-                aDecision = Data::eDecisionType::Cheat;
-            }
-            else
-            {
-                aDecision = Data::eDecisionType::Cooperate;
-            }
+            aDecision = makePlayerDecision(aDecisionData.getPlayer2Decisions());
         }
         else if(aPlayerNumber == Data::ePlayerNumber::Two)
         {
-            if(std::find(aDecisionData.getPlayer1Decisions().begin(),
-               aDecisionData.getPlayer1Decisions().end(),
-               Data::eDecisionType::Cheat) != aDecisionData.getPlayer1Decisions().end())
-            {
-                aDecision = Data::eDecisionType::Cheat;
-            }
-            else
-            {
-                aDecision = Data::eDecisionType::Cooperate;
-            }
+            aDecision = makePlayerDecision(aDecisionData.getPlayer1Decisions());
         }
         else
         {
@@ -166,6 +148,20 @@ namespace Implementation
         }
 
         return calculateMistake(aDecision, aMistakeChance);
+    }
+
+    Data::eDecisionType PersonalityVengeful::makePlayerDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const
+    {
+        if(std::find(aDecisionVector.begin(),
+           aDecisionVector.end(),
+           Data::eDecisionType::Cheat) != aDecisionVector.end())
+        {
+            return Data::eDecisionType::Cheat;
+        }
+        else
+        {
+            return Data::eDecisionType::Cooperate;
+        }
     }
 
     /*
@@ -189,15 +185,11 @@ namespace Implementation
         {
             if(aPlayerNumber == Data::ePlayerNumber::One)
             {
-                aDecision = aDecisionData.getPlayer2Decisions().back() == Data::eDecisionType::Cheat        //Last move was to cheat
-                    && *(++aDecisionData.getPlayer2Decisions().rbegin()) == Data::eDecisionType::Cheat ?    //And second to last move was to cheat
-                    Data::eDecisionType::Cheat : Data::eDecisionType::Cooperate;                            //If so return cheat
+                aDecision = makePlayerDecision(aDecisionData.getPlayer2Decisions());
             }
             else if(aPlayerNumber == Data::ePlayerNumber::Two)
             {
-                aDecision = aDecisionData.getPlayer1Decisions().back() == Data::eDecisionType::Cheat        //Last move was to cheat
-                    && *(++aDecisionData.getPlayer1Decisions().rbegin()) == Data::eDecisionType::Cheat ?    //And second to last move was to cheat
-                    Data::eDecisionType::Cheat : Data::eDecisionType::Cooperate;                            //If so return cheat
+                aDecision = makePlayerDecision(aDecisionData.getPlayer1Decisions());
             }
             else
             {
@@ -207,6 +199,13 @@ namespace Implementation
         }
 
         return calculateMistake(aDecision, aMistakeChance);
+    }
+
+    Data::eDecisionType PersonalityCopykitten::makePlayerDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const
+    {
+        return aDecisionVector.back() == Data::eDecisionType::Cheat             //Last move was to cheat
+            && *(++aDecisionVector.rbegin()) == Data::eDecisionType::Cheat ?    //And second to last move was to cheat
+            Data::eDecisionType::Cheat : Data::eDecisionType::Cooperate;        //If so return cheat else cooperate
     }
 
     /*
@@ -317,33 +316,11 @@ namespace Implementation
             {
                 if(aPlayerNumber == Data::ePlayerNumber::One)
                 {
-                    if(aDecisionData.getPlayer1Decisions().back() == Data::eDecisionType::Cheat)
-                    {
-                        aDecision = Data::eDecisionType::Cooperate;
-                    }
-                    else if(aDecisionData.getPlayer1Decisions().back() == Data::eDecisionType::Cooperate)
-                    {
-                        aDecision = Data::eDecisionType::Cheat;
-                    }
-                    else
-                    {
-                        throw std::exception("Found a past decision which was not set in PersonalityWinStayLoseSwitch::makeDecision");
-                    }
+                    aDecision = makePlayerLoseDecision(aDecisionData.getPlayer1Decisions());
                 }
                 else if(aPlayerNumber == Data::ePlayerNumber::Two)
                 {
-                    if(aDecisionData.getPlayer2Decisions().back() == Data::eDecisionType::Cheat)
-                    {
-                        aDecision = Data::eDecisionType::Cooperate;
-                    }
-                    else if(aDecisionData.getPlayer2Decisions().back() == Data::eDecisionType::Cooperate)
-                    {
-                        aDecision = Data::eDecisionType::Cheat;
-                    }
-                    else
-                    {
-                        throw std::exception("Found a past decision which was not set in PersonalityWinStayLoseSwitch::makeDecision");
-                    }
+                    aDecision = makePlayerLoseDecision(aDecisionData.getPlayer2Decisions());
                 }
                 else
                 {
@@ -394,4 +371,19 @@ namespace Implementation
         return aWinLose;
     }
 
+    Data::eDecisionType PersonalityWinStayLoseSwitch::makePlayerLoseDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const
+    {
+        if(aDecisionVector.back() == Data::eDecisionType::Cheat)
+        {
+            return Data::eDecisionType::Cooperate;
+        }
+        else if(aDecisionVector.back() == Data::eDecisionType::Cooperate)
+        {
+            return Data::eDecisionType::Cheat;
+        }
+        else
+        {
+            throw std::exception("Found a past decision which was not set in PersonalityWinStayLoseSwitch::makeDecision");
+        }
+    }
 }

@@ -45,7 +45,7 @@ namespace Implementation
 		Data::eDecisionType calculateMistake(const Data::eDecisionType& aCurrentDecision, unsigned int aMistakeChance) const;
 	};
 
-	class PersonalityCheater : public Personality
+	class PersonalityCheater final : public Personality
 	{
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
@@ -53,7 +53,7 @@ namespace Implementation
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
-	class PersonalityCooperator : public Personality
+	class PersonalityCooperator final : public Personality
 	{
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
@@ -61,7 +61,7 @@ namespace Implementation
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
-	class PersonalityCopycat : public Personality
+	class PersonalityCopycat final : public Personality
 	{
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
@@ -69,7 +69,29 @@ namespace Implementation
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
-	class PersonalityVengeful : public Personality
+	class PersonalityVengeful final : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+
+	private:
+		Data::eDecisionType makePlayerDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const;
+	};
+
+	class PersonalityCopykitten final : public Personality
+	{
+	public:
+		virtual std::unique_ptr<Personality> clone() const override;
+
+		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+
+	private:
+		Data::eDecisionType makePlayerDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const;
+	};
+
+	class PersonalityMeanCopycat final : public Personality
 	{
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
@@ -77,7 +99,7 @@ namespace Implementation
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
-	class PersonalityCopykitten : public Personality
+	class PersonalityRandom final : public Personality
 	{
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
@@ -85,23 +107,7 @@ namespace Implementation
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	};
 
-	class PersonalityMeanCopycat : public Personality
-	{
-	public:
-		virtual std::unique_ptr<Personality> clone() const override;
-
-		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
-	};
-
-	class PersonalityRandom : public Personality
-	{
-	public:
-		virtual std::unique_ptr<Personality> clone() const override;
-
-		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
-	};
-
-	class PersonalityWinStayLoseSwitch : public Personality
+	class PersonalityWinStayLoseSwitch final : public Personality
 	{
 	public:
 		virtual std::unique_ptr<Personality> clone() const override;
@@ -109,6 +115,8 @@ namespace Implementation
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
 	private:
 		Data::eWinLose determineIfWinOrLose(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const;
+	
+		Data::eDecisionType makePlayerLoseDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const;
 	};
 
 }

@@ -9,11 +9,11 @@ namespace Core
 {
 	Data::GameResults Game::run()
 	{
-		BOOST_LOG_TRIVIAL(info) << "Running game."; 
-		BOOST_LOG_TRIVIAL(info) << "Player 1 ID: " << _player1->getId();
-		BOOST_LOG_TRIVIAL(debug) << "Player 1 Personality: " << std::to_string(static_cast<int>(_player1->getPersonalityType()));
-		BOOST_LOG_TRIVIAL(info) << "Player 2 ID: " << _player2->getId();
-		BOOST_LOG_TRIVIAL(debug) << "Player 2 Personality: " << std::to_string(static_cast<int>(_player2->getPersonalityType()));
+		BOOST_LOG_TRIVIAL(debug) << "Running game."; 
+		BOOST_LOG_TRIVIAL(debug) << "Player 1 ID: " << _player1->getId();
+		BOOST_LOG_TRIVIAL(trace) << "Player 1 Personality: " << std::to_string(static_cast<int>(_player1->getPersonalityType()));
+		BOOST_LOG_TRIVIAL(debug) << "Player 2 ID: " << _player2->getId();
+		BOOST_LOG_TRIVIAL(trace) << "Player 2 Personality: " << std::to_string(static_cast<int>(_player2->getPersonalityType()));
 
 		if(_player1->getId() == _player2->getId())
 		{
@@ -32,12 +32,12 @@ namespace Core
 			aGameResults.update(aRoundResults);
 		}
 
-		BOOST_LOG_TRIVIAL(info) << "Updating Players with rewards.";
+		BOOST_LOG_TRIVIAL(debug) << "Updating Players with rewards.";
 
 		_player1->updateGameReward(aGameResults, Data::ePlayerNumber::One);
 		_player2->updateGameReward(aGameResults, Data::ePlayerNumber::Two);
 
-		BOOST_LOG_TRIVIAL(info) << "Game finished.";
+		BOOST_LOG_TRIVIAL(debug) << "Game finished.";
 
 		return aGameResults;
 	}

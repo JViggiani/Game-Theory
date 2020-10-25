@@ -14,7 +14,7 @@ namespace Config
 	
 	Config::TournamentConfig::TournamentConfig()
 	{
-		BOOST_LOG_TRIVIAL(info) << "Reading Tournament config";
+		BOOST_LOG_TRIVIAL(debug) << "Reading Tournament config";
 		
 		boost::property_tree::ptree pt;
 		boost::property_tree::ini_parser::read_ini("./Config/TournamentConfig.ini", pt);

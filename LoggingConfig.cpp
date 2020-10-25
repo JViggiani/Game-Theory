@@ -8,7 +8,7 @@
 Config::LoggingConfig::LoggingConfig()
 {
 	boost::property_tree::ptree pt;
-	boost::property_tree::ini_parser::read_ini("./Config/LoggingConfig.ini", pt);
+	boost::property_tree::ini_parser::read_ini("./Config/TournamentConfig.ini", pt);
 
 	_severity = static_cast<boost::log::trivial::severity_level>(pt.get<int>("Logging.Severity"));
 

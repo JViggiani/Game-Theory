@@ -95,14 +95,14 @@ namespace Core
 		{
 			int aCumulativeReward = std::accumulate(aGameResults.getPlayer1Reward().begin(), aGameResults.getPlayer1Reward().end(), 0);
 			
-			BOOST_LOG_TRIVIAL(debug) << "Player 1 reward: " << aCumulativeReward;
+			BOOST_LOG_TRIVIAL(trace) << "Player 1 reward: " << aCumulativeReward;
 			this->_cumulativeReward += aCumulativeReward;
 		}
 		else if(aPlayerNumber == Data::ePlayerNumber::Two)
 		{
 			int aCumulativeReward = std::accumulate(aGameResults.getPlayer2Reward().begin(), aGameResults.getPlayer2Reward().end(), 0);
 
-			BOOST_LOG_TRIVIAL(debug) << "Player 2 reward: " << aCumulativeReward;
+			BOOST_LOG_TRIVIAL(trace) << "Player 2 reward: " << aCumulativeReward;
 			this->_cumulativeReward += aCumulativeReward;
 		}
 		else

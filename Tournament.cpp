@@ -11,7 +11,7 @@ namespace Core
 {
 	Tournament::Tournament(const Config::TournamentConfig& aTournamentConfig)
 	{
-        BOOST_LOG_TRIVIAL(info) << "Constructing Tournament";
+        BOOST_LOG_TRIVIAL(debug) << "Constructing Tournament";
         
         //JOSH consider just storing the config as an attribute directly. Though we would have player config.. maybe worth separating them?
         _numOfEvolutions = aTournamentConfig._numOfEvolutions;
@@ -55,7 +55,7 @@ namespace Core
 	
     Data::TournamentResults Core::Tournament::run()
 	{
-        BOOST_LOG_TRIVIAL(info) << "Beginning Tournament";
+        BOOST_LOG_TRIVIAL(debug) << "Beginning Tournament";
         
         for(int aEvolutionsIt = 0; aEvolutionsIt < _numOfEvolutions; ++aEvolutionsIt)
         {
@@ -63,7 +63,7 @@ namespace Core
             evolve();
         }
 
-        BOOST_LOG_TRIVIAL(info) << "Finishing Tournament";
+        BOOST_LOG_TRIVIAL(debug) << "Finishing Tournament";
         
         Data::TournamentResults aTournamentResults(this->_players);
         return aTournamentResults;

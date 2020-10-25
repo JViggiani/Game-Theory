@@ -24,7 +24,7 @@ namespace Implementation
         if(aMistakeChance > aRandomNumber)
         {
             //mistake!
-            BOOST_LOG_TRIVIAL(debug) << "A player made a discision mistake!";
+            BOOST_LOG_TRIVIAL(trace) << "A player made a discision mistake!";
 
             if(aCurrentDecision == Data::eDecisionType::Cheat)
             {
@@ -42,7 +42,7 @@ namespace Implementation
         }
         else
         {
-            BOOST_LOG_TRIVIAL(debug) << "A player avoided a mistake.";
+            BOOST_LOG_TRIVIAL(trace) << "A player avoided a mistake.";
         }
 
         return aNewDecision;

@@ -10,7 +10,7 @@ Config::GameConfig::GameConfig()
     BOOST_LOG_TRIVIAL(debug) << "Building game machine and reading game config file.";
     
     boost::property_tree::ptree pt;
-    boost::property_tree::ini_parser::read_ini("./Config/GameConfig.ini", pt);
+    boost::property_tree::ini_parser::read_ini("./Config/TournamentConfig.ini", pt);
 
     _bothCheat = pt.get<int>("Game.BothCheat");
     _bothCooperate = pt.get<int>("Game.BothCooperate");

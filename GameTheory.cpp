@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
         Config::LoggingConfig aLoggingConfig;
         init_logging(aLoggingConfig);
         
-        BOOST_LOG_TRIVIAL(info) << "Beginning main.";
+        BOOST_LOG_TRIVIAL(debug) << "Beginning main.";
 
         //Build and run tournament
         Config::TournamentConfig aTournementConfig;
@@ -65,14 +65,14 @@ int main(int argc, char* argv[])
 
         printTournamentResults(aTournamentResults);
 
-        BOOST_LOG_TRIVIAL(info) << "Finishing main.";
+        BOOST_LOG_TRIVIAL(debug) << "Finishing main.";
     }
     catch(std::exception e)
     {
-        BOOST_LOG_TRIVIAL(info) << "Caught exception from main: " << e.what();
+        BOOST_LOG_TRIVIAL(error) << "Caught exception from main: " << e.what();
     }
     catch(...)
     {
-        BOOST_LOG_TRIVIAL(info) << "Caught unknown exception from main.";
+        BOOST_LOG_TRIVIAL(error) << "Caught unknown exception from main.";
     }
 }

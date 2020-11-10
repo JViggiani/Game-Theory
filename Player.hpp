@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <string>
+#include <typeinfo>
 
 #include "Personality.hpp"
 #include "RoundResults.hpp"
@@ -15,12 +16,24 @@ namespace Core
 	//! This class is a wrapper Proxy around the polymorphic Personality pointer. Decisions should be delegated to the Personality.
 	class Player
 	{
+	protected:
+		//! Main constructor.
+		/*
+			Use the static templated create function
+		*/
+		Player();
+	
 	public:
 		/// Constructors and Destructors ///
 
-		//! Main constructor.
-		//Player(const Implementation::Personality& aPersonality);
-		Player(const Data::ePersonalityType& aPersonality);
+		template <typename T> 
+		static Player create()
+		{
+			Player aPlayer;
+			aPlayer._personality = std::make_unique<T>();
+
+			return aPlayer;
+		};
 
 		//! Default destructor.
 		~Player() = default;
@@ -54,10 +67,8 @@ namespace Core
 
 		Data::ePersonalityType getPersonalityType() const
 		{
-			return _personalityType;
+			return _personality->getPersonalityType();
 		}
-
-		//std::string getPersonalityTypeStr() const;
 
 		int getCumulativeReward() const
 		{
@@ -69,9 +80,10 @@ namespace Core
 		void resetGameReward();
 
 	private:
+
 		/*
 			This Personality makes the important decisions. It does not hold any data.
-			
+
 			This must be a pointer because Personality is abstract
 			We want to be able to polymorphically use the correct personality child here
 			Perhaps C++23 will have polymorphic_value<T> :(
@@ -81,7 +93,5 @@ namespace Core
 		unsigned int _id;
 		unsigned static int _idCounter;
 		int _cumulativeReward;
-		Data::ePersonalityType _personalityType;
 	};
-
 }

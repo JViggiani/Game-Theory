@@ -1,5 +1,6 @@
 #include "Tournament.hpp"
 #include "Game.hpp"
+#include "Personality.hpp"
 
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
@@ -21,35 +22,35 @@ namespace Core
         //Populate Players
         for(int i = 0; i < aTournamentConfig._numCheaters; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Cheater)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCheater>()));
         }
         for(int i = 0; i < aTournamentConfig._numCooperators; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Cooperator)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCooperator>()));
         }
         for(int i = 0; i < aTournamentConfig._numCopycats; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Copycat)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCopycat>()));
         }
         for(int i = 0; i < aTournamentConfig._numVengeful; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Vengeful)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityVengeful>()));
         }
         for(int i = 0; i < aTournamentConfig._numCopykitten; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Copykitten)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCopykitten>()));
         }
         for(int i = 0; i < aTournamentConfig._numMeanCopycat; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::MeanCopycat)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityMeanCopycat>()));
         }
         for(int i = 0; i < aTournamentConfig._numRandom; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::Random)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityRandom>()));
         }
         for(int i = 0; i < aTournamentConfig._numWinStayLoseSwitch; ++i)
         {
-            _players.push_back(std::make_shared<Core::Player>(Core::Player(Data::ePersonalityType::WinStayLoseSwitch)));
+            _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityWinStayLoseSwitch>()));
         }
 	}
 	

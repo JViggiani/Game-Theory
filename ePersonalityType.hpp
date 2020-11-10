@@ -2,7 +2,7 @@
 
 namespace Data
 {
-
+	
 	enum class ePersonalityType
 	{
 		Unset = 0,
@@ -15,5 +15,5 @@ namespace Data
 		Random = 7,
 		WinStayLoseSwitch = 8
 	};
-
+	
 }

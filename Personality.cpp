@@ -65,6 +65,11 @@ namespace Implementation
         return calculateMistake(aDecision, aMistakeChance);
     }
 
+    Data::ePersonalityType PersonalityCheater::getPersonalityType()
+    {
+        return Data::ePersonalityType::Cheater;
+    }
+
     /*
         Cooperator
     */
@@ -81,6 +86,11 @@ namespace Implementation
         aDecision = calculateMistake(aDecision, aMistakeChance);
 
         return calculateMistake(aDecision, aMistakeChance);
+    }
+
+    Data::ePersonalityType PersonalityCooperator::getPersonalityType()
+    {
+        return Data::ePersonalityType::Cooperator;
     }
 
     /*
@@ -118,6 +128,11 @@ namespace Implementation
         }
 
         return calculateMistake(aDecision, aMistakeChance);
+    }
+
+    Data::ePersonalityType PersonalityCopycat::getPersonalityType()
+    {
+        return Data::ePersonalityType::Copycat;
     }
 
     /*
@@ -164,6 +179,11 @@ namespace Implementation
         }
     }
 
+    Data::ePersonalityType PersonalityVengeful::getPersonalityType()
+    {
+        return Data::ePersonalityType::Vengeful;
+    }
+
     /*
         Copykitten
     */
@@ -208,6 +228,11 @@ namespace Implementation
             Data::eDecisionType::Cheat : Data::eDecisionType::Cooperate;        //If so return cheat else cooperate
     }
 
+    Data::ePersonalityType PersonalityCopykitten::getPersonalityType()
+    {
+        return Data::ePersonalityType::Copykitten;
+    }
+
     /*
         MeanCopycat
     */
@@ -245,6 +270,11 @@ namespace Implementation
         return calculateMistake(aDecision, aMistakeChance);
     }
 
+    Data::ePersonalityType PersonalityMeanCopycat::getPersonalityType()
+    {
+        return Data::ePersonalityType::MeanCopycat;
+    }
+
     /*
         PersonalityRandom
     */
@@ -273,6 +303,11 @@ namespace Implementation
         {
             throw std::exception("Personality Random generated an unexpected value!");
         }
+    }
+
+    Data::ePersonalityType PersonalityRandom::getPersonalityType()
+    {
+        return Data::ePersonalityType::Random;
     }
 
     /*
@@ -385,5 +420,10 @@ namespace Implementation
         {
             throw std::exception("Found a past decision which was not set in PersonalityWinStayLoseSwitch::makeDecision");
         }
+    }
+
+    Data::ePersonalityType PersonalityWinStayLoseSwitch::getPersonalityType()
+    {
+        return Data::ePersonalityType::WinStayLoseSwitch;
     }
 }

@@ -6,6 +6,7 @@
 #include "GameResults.hpp"
 #include "ePlayerNumber.hpp"
 #include "eWinLose.hpp"
+#include "ePersonalityType.hpp"
 
 namespace Implementation
 {
@@ -40,6 +41,7 @@ namespace Implementation
 
 		virtual std::unique_ptr<Personality> clone() const = 0;
 		virtual Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const = 0;
+		virtual Data::ePersonalityType getPersonalityType() = 0;
 
 	protected:
 		Data::eDecisionType calculateMistake(const Data::eDecisionType& aCurrentDecision, unsigned int aMistakeChance) const;
@@ -51,6 +53,7 @@ namespace Implementation
 		virtual std::unique_ptr<Personality> clone() const override;
 
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 	class PersonalityCooperator final : public Personality
@@ -59,6 +62,7 @@ namespace Implementation
 		virtual std::unique_ptr<Personality> clone() const override;
 
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 	class PersonalityCopycat final : public Personality
@@ -67,6 +71,7 @@ namespace Implementation
 		virtual std::unique_ptr<Personality> clone() const override;
 
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 	class PersonalityVengeful final : public Personality
@@ -78,6 +83,7 @@ namespace Implementation
 
 	private:
 		Data::eDecisionType makePlayerDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 	class PersonalityCopykitten final : public Personality
@@ -89,6 +95,7 @@ namespace Implementation
 
 	private:
 		Data::eDecisionType makePlayerDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 	class PersonalityMeanCopycat final : public Personality
@@ -97,6 +104,7 @@ namespace Implementation
 		virtual std::unique_ptr<Personality> clone() const override;
 
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 	class PersonalityRandom final : public Personality
@@ -105,6 +113,7 @@ namespace Implementation
 		virtual std::unique_ptr<Personality> clone() const override;
 
 		Data::eDecisionType makeDecision(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber, unsigned int aMistakeChance) const override;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 	class PersonalityWinStayLoseSwitch final : public Personality
@@ -117,6 +126,7 @@ namespace Implementation
 		Data::eWinLose determineIfWinOrLose(const Data::GameResults& aDecisionData, const Data::ePlayerNumber& aPlayerNumber) const;
 	
 		Data::eDecisionType makePlayerLoseDecision(const std::vector<Data::eDecisionType>& aDecisionVector) const;
+		Data::ePersonalityType getPersonalityType();
 	};
 
 }

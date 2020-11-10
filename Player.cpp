@@ -10,55 +10,18 @@ namespace Core
 {
 	unsigned int Player::_idCounter;
 	
-	/*
-	Player::Player(const Implementation::Personality& aPersonality)
-	{
-		_personality = aPersonality.clone();
-	}
-	*/
-	Player::Player(const Data::ePersonalityType& aPersonality)
+	Player::Player()
 	{
 		_id = _idCounter;
 		_idCounter++;
-		_personalityType = aPersonality;
 		// Reward can go negative but should start at 0
-		_cumulativeReward = 0;
-
-		switch(aPersonality)
-		{
-		case Data::ePersonalityType::Cheater:
-			_personality = std::make_unique<Implementation::PersonalityCheater>();
-			break;
-		case Data::ePersonalityType::Cooperator:
-			_personality = std::make_unique<Implementation::PersonalityCooperator>();
-			break;
-		case Data::ePersonalityType::Copycat:
-			_personality = std::make_unique<Implementation::PersonalityCopycat>();
-			break;
-		case Data::ePersonalityType::Copykitten:
-			_personality = std::make_unique<Implementation::PersonalityCopykitten>();
-			break;
-		case Data::ePersonalityType::MeanCopycat:
-			_personality = std::make_unique<Implementation::PersonalityMeanCopycat>();
-			break;
-		case Data::ePersonalityType::Random:
-			_personality = std::make_unique<Implementation::PersonalityRandom>();
-			break;
-		case Data::ePersonalityType::Vengeful:
-			_personality = std::make_unique<Implementation::PersonalityVengeful>();
-			break;
-		case Data::ePersonalityType::WinStayLoseSwitch:
-			_personality = std::make_unique<Implementation::PersonalityWinStayLoseSwitch>();
-			break;
-		default:
-			throw std::exception("Trying to construct an Unset or unknown Personality");
-		}		
+		_cumulativeReward = 0;	
 	}
 
 	Player::Player(const Player& aPlayer)
 	{
 		_personality = aPlayer._personality->clone();
-		_personalityType = aPlayer._personalityType;
+		//_personalityType = aPlayer._personalityType;
 		_id = _idCounter;
 		_idCounter++;
 		_cumulativeReward = aPlayer._cumulativeReward;
@@ -67,7 +30,7 @@ namespace Core
 	Player& Player::operator=(const Player& aPlayer)
 	{
 		_personality = aPlayer._personality->clone();
-		_personalityType = aPlayer._personalityType;
+		//_personalityType = aPlayer._personalityType;
 		_id = _idCounter;
 		_idCounter++;
 		_cumulativeReward = aPlayer._cumulativeReward;
@@ -77,7 +40,7 @@ namespace Core
 	Player& Player::operator=(const Player&& aPlayer) noexcept
 	{
 		_personality = aPlayer._personality->clone();
-		_personalityType = aPlayer._personalityType;
+		//_personalityType = aPlayer._personalityType;
 		_id = _idCounter;
 		_idCounter++;
 		_cumulativeReward = aPlayer._cumulativeReward;

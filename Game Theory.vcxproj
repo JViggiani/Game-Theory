@@ -169,6 +169,8 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="ePlayerNumber.hpp" />
     <ClInclude Include="GameConfig.hpp" />
+    <ClInclude Include="PlayerConfig.hpp" />
+    <ClInclude Include="ProcessConfig.hpp" />
     <ClInclude Include="RoundResults.hpp" />
     <ClInclude Include="Tournament.hpp" />
     <ClInclude Include="TournamentConfig.hpp" />

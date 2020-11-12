@@ -104,5 +104,11 @@
     <ClInclude Include="Utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerConfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessConfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

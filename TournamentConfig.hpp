@@ -1,5 +1,8 @@
 #pragma once
 
+#include "PlayerConfig.hpp"
+#include "ProcessConfig.hpp"
+
 namespace Config
 {
 	
@@ -8,20 +11,11 @@ namespace Config
 		TournamentConfig();
 		~TournamentConfig() = default;
 
-		// Tournament Config
-		int _numOfEvolutions;
-		int _numOfRounds;
-		int _numOfEliminationEvolutions;
+		// Process Config
+		ProcessConfig _processConfig;
 
-		//Personalities
-		int _numCheaters;
-		int _numCooperators;
-		int _numCopycats;
-		int _numVengeful;
-		int _numCopykitten;
-		int _numMeanCopycat;
-		int _numRandom;
-		int _numWinStayLoseSwitch;
+		// Personalities
+		PlayerConfig _playerConfig;
 	};
 
 }

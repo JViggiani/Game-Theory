@@ -11,44 +11,43 @@
 namespace Core
 {
 	Tournament::Tournament(const Config::TournamentConfig& aTournamentConfig)
+        :
+            _numOfEvolutions(aTournamentConfig._processConfig._numOfEvolutions),
+            _numOfRounds(aTournamentConfig._processConfig._numOfRounds),
+            _numOfEliminationEvolutions(aTournamentConfig._processConfig._numOfEliminationEvolutions)
 	{
         BOOST_LOG_TRIVIAL(debug) << "Constructing Tournament";
-        
-        //JOSH consider just storing the config as an attribute directly. Though we would have player config.. maybe worth separating them?
-        _numOfEvolutions = aTournamentConfig._numOfEvolutions;
-        _numOfRounds = aTournamentConfig._numOfRounds;
-        _numOfEliminationEvolutions = aTournamentConfig._numOfEliminationEvolutions;
 
         //Populate Players
-        for(int i = 0; i < aTournamentConfig._numCheaters; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numCheaters; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCheater>()));
         }
-        for(int i = 0; i < aTournamentConfig._numCooperators; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numCooperators; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCooperator>()));
         }
-        for(int i = 0; i < aTournamentConfig._numCopycats; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numCopycats; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCopycat>()));
         }
-        for(int i = 0; i < aTournamentConfig._numVengeful; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numVengeful; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityVengeful>()));
         }
-        for(int i = 0; i < aTournamentConfig._numCopykitten; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numCopykitten; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityCopykitten>()));
         }
-        for(int i = 0; i < aTournamentConfig._numMeanCopycat; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numMeanCopycat; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityMeanCopycat>()));
         }
-        for(int i = 0; i < aTournamentConfig._numRandom; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numRandom; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityRandom>()));
         }
-        for(int i = 0; i < aTournamentConfig._numWinStayLoseSwitch; ++i)
+        for(int i = 0; i < aTournamentConfig._playerConfig._numWinStayLoseSwitch; ++i)
         {
             _players.push_back(std::make_shared<Core::Player>(Core::Player::create<Implementation::PersonalityWinStayLoseSwitch>()));
         }

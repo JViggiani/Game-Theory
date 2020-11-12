@@ -43,7 +43,7 @@ WinStayLoseSwitch | Cooperates by default. Switches decision based on whether it
 
 The user has control over many aspects of the tournament. This can be found in TournamentConfig.ini
 
-Logging config:
+**Logging config:**
 
 Item | Description
 ------------ | -------------
@@ -51,7 +51,7 @@ Severity | Trace levels of 0-5, displaying varying amounts of information. 0 - t
 LogFileName | The name of the log file to write to.
 LogFileDirectory | The directory to write the log file to.
 
-Tournament config:
+**Tournament config:**
 
 Item | Description
 ------------ | -------------
@@ -59,11 +59,11 @@ Evolutions | The number of tournament cycles to play, evolve and eliminate.
 Rounds | The number of decisions made in a game by both players. 
 EliminationEvolutions | The number of players to both evolve and eliminate. This is the same to maintain a stable population.
 
-Player config:
+**Player config:**
 
 This is simply the initial list of players with different types of personality. It will evolve over time. 
 
-Game config:
+**Game config:**
 
 Item | Description
 ------------ | -------------
